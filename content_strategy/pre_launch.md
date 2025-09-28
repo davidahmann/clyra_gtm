@@ -1,6 +1,6 @@
-Clyra Pre-Launch Content Strategy: "The Evidence Revolution"
+Clyra v4.0 Pre-Launch Content Strategy: "The Data Governance Revolution"
 
-  8-Week Tension-Building Campaign
+  8-Week Data Platform Tension-Building Campaign
 
   ---
   Why Pre-Launch Content is Essential
@@ -14,95 +14,108 @@ Clyra Pre-Launch Content Strategy: "The Evidence Revolution"
 
   The Power of Pre-Launch Priming
 
-  - Problem awareness - Educate market on evidence vs. observability gap
-  - Thought leadership - Become the expert before revealing the solution
-  - Community trust - Build relationships through value-first content
-  - Message testing - Refine positioning based on real engagement
-  - Launch amplification - Turn readers into launch-day advocates
+  - Problem awareness - Educate market on data change control vs. observability gap
+  - Thought leadership - Become the expert in data platform governance before revealing solution
+  - Community trust - Build relationships through dbt and warehouse expertise
+  - Message testing - Refine SOX compliance messaging based on real engagement
+  - Launch amplification - Turn data engineers into launch-day advocates
 
   ---
-  Campaign Theme: "The Great Observability Lie"
+  Campaign Theme: "The Data Governance Gap"
 
   Core Tension Narrative
 
-  Week 1-2: "Your monitoring shows everything" (false comfort)Week 3-4: "But can you prove what
-  actually happened?" (reveal gap)Week 5-6: "Forensic evidence vs. symptom detection" (establish
-  need)Week 7-8: "The solution exists..." (build anticipation)
+  Week 1-2: "Your dbt docs and warehouse logs show everything" (false comfort)
+  Week 3-4: "But can you prove data changes were approved?" (reveal SOX compliance gap)
+  Week 5-6: "Schema change control vs. monitoring alerts" (establish need)
+  Week 7-8: "The data governance solution exists..." (build anticipation)
 
   ---
   Week-by-Week Content Strategy
 
   Week 1-2: The Comfort Zone
 
-  Theme: "We Have Observability, We're Fine"
+  Theme: "We Have dbt Docs and Snowflake Logs, We're Fine"
 
-  Blog Post 1: "The $2M Incident That Observability Couldn't Solve"
+  Blog Post 1: "The Revenue Model Change That Failed SOX Audit"
 
-  Platform: Personal blog/MediumLength: 1,200 wordsHook: Real incident story (anonymized)Content:
-  - Detailed timeline of automation failure
-  - What Datadog/New Relic showed (symptoms)
-  - What auditors needed (evidence)
-  - The gap that nearly cost the business
-  CTA: "Have you faced similar challenges?"
+  Platform: Personal blog/Medium
+  Length: 1,200 words
+  Hook: Real SOX audit failure story (anonymized)
+  Content:
+  - Detailed timeline of dbt model change affecting revenue calculation
+  - What dbt Cloud and Snowflake logs showed (symptoms)
+  - What SOX auditors needed (approved change evidence)
+  - The compliance gap that nearly cost the quarter-end close
+  CTA: "Have you faced similar SOX compliance challenges?"
 
-  Technical Deep-Dive: "Why Database Timestamps Lie"
+  Technical Deep-Dive: "Why Warehouse Logs Aren't SOX Evidence"
 
-  Platform: Personal blog + r/PostgreSQLLength: 800 wordsHook: Technical credibility with Postgres
-  communityContent:
-  - Clock skew in distributed systems
-  - NTP drift causing audit gaps
-  - WAL LSN as immutable truth source
-  - Code examples showing timestamp manipulation
-  CTA: "How do you handle time consistency?"
+  Platform: Personal blog + r/dataengineering
+  Length: 800 words
+  Hook: Technical credibility with data platform community
+  Content:
+  - Query logs vs. approved change evidence
+  - Audit trail gaps in modern data stacks
+  - Warehouse-native anchoring (QUERY_HISTORY, Delta commits) as truth source
+  - Examples of SOX ITGC failures due to missing change control
+  CTA: "How do you handle data change governance?"
 
   Reddit Engagement Strategy
 
-  r/devops: Comment thoughtfully on 3-5 incident response threadsr/PostgreSQL: Answer questions
-  about WAL, LSN, and audit loggingr/mlops: Share experiences with AI system reliabilityTone:
-  Helpful expert, never promotional
+  r/dataengineering: Comment thoughtfully on 3-5 dbt and data governance threads
+  r/dbt: Answer questions about hooks, testing, and change management
+  r/BusinessIntelligence: Share experiences with data platform compliance
+  Tone: Helpful data expert, never promotional
 
-  X/Twitter: Daily Technical Insights
+  X/Twitter: Daily Data Platform Insights
 
-  Day 1: "Your automation failed at 2:47 PM. Or was it 2:46? Or 2:48?
-         Clock skew makes timestamps unreliable for forensics."
+  Day 1: "Your dbt model changed revenue calculation at 2:47 PM.
+         But can you prove it was approved? Query logs aren't SOX evidence."
 
-  Day 3: "Postgres WAL LSN = immutable sequence number.
-         Much better forensic anchor than timestamps."
+  Day 3: "Snowflake QUERY_HISTORY = immutable audit anchor.
+         Much better than relying on dbt logs for compliance."
 
-  Day 5: "Thread: 5 ways observability tools mislead you during incidents 🧵"
+  Day 5: "Thread: 5 ways data observability tools fail SOX audits 🧵"
 
   ---
   Week 3-4: The Uncomfortable Truth
 
-  Theme: "Observability Shows Symptoms, Not Evidence"
+  Theme: "Data Monitoring Shows Changes, Not Approvals"
 
-  Blog Post 2: "Your Auditor Asked for Proof. You Gave Them Dashboards."
+  Blog Post 2: "Your SOX Auditor Asked for Change Control. You Gave Them dbt Logs."
 
-  Platform: Personal blog + HackerNews submissionLength: 1,000 wordsHook: Compliance failure
-  storyContent:
-  - Real audit scenario where logs weren't enough
-  - Difference between "monitoring" and "evidence"
-  - What QSAs actually require for AI systems
-  - The compliance gap most companies ignore
-  CTA: "When did you realize monitoring ≠ evidence?"
+  Platform: Personal blog + HackerNews submission
+  Length: 1,000 words
+  Hook: SOX compliance failure story
+  Content:
+  - Real audit scenario where dbt logs weren't sufficient
+  - Difference between "data monitoring" and "change control evidence"
+  - What SOX auditors actually require for ITGC controls
+  - The data governance gap most companies ignore
+  CTA: "When did you realize data monitoring ≠ change control evidence?"
 
-  Technical Tutorial: "Building Tamper-Evident Logs (The Right Way)"
+  Technical Tutorial: "Building SOX-Compliant dbt Change Control"
 
-  Platform: Personal blog + r/devopsLength: 1,200 words with codeHook: Practical implementation
-  guidanceContent:
-  - Hash chains and Merkle trees for log integrity
-  - Why append-only isn't enough
-  - Cryptographic signatures for non-repudiation
-  - Go/Python examples
-  CTA: "What's your approach to log integrity?"
+  Platform: Personal blog + r/dbt
+  Length: 1,200 words with code
+  Hook: Practical dbt governance implementation
+  Content:
+  - dbt hooks for change tracking and approval validation
+  - Warehouse-native approval tokens and session tags
+  - Schema change detection and attestation
+  - dbt macro examples for governance
+  CTA: "What's your approach to dbt change control?"
 
-  Postgres Community Contribution
+  Data Platform Community Contribution
 
-  Platform: PostgresWeekly pitchTitle: "WAL LSN: The Forensic Backbone You're Not Using"Content:
-  - LSN as audit anchor point
-  - Advantages over timestamp-based auditing
-  - Integration patterns with automation tools
-  - Performance considerations
+  Platform: dbt Community Slack + r/dataengineering
+  Title: "Warehouse Anchors: The SOX Compliance Foundation You're Missing"
+  Content:
+  - QUERY_HISTORY and Delta commits as audit anchor points
+  - Advantages over timestamp-based change tracking
+  - Integration patterns with dbt and data pipelines
+  - Performance considerations for governance hooks
 
   Engagement Expansion
 
@@ -112,87 +125,103 @@ Clyra Pre-Launch Content Strategy: "The Evidence Revolution"
   ---
   Week 5-6: The Technical Solution Space
 
-  Theme: "Forensic Evidence vs. Symptom Detection"
+  Theme: "Change Control Evidence vs. Monitoring Alerts"
 
-  Blog Post 3: "Why Your Incident Response is Guesswork"
+  Blog Post 3: "Why Your SOX Audit Prep is Guesswork"
 
-  Platform: Personal blog + multiple subreddit sharesLength: 1,100 wordsHook: MTTR reduction
-  through deterministic replayContent:
-  - Real incidents where replay would have helped
-  - Difference between "fixing" and "proving the fix"
-  - Deterministic reproduction as competitive advantage
-  - Building forensic capabilities into automation
-  CTA: "Could you replay your last incident exactly?"
+  Platform: Personal blog + multiple subreddit shares
+  Length: 1,100 words
+  Hook: Audit prep time reduction through deterministic evidence
+  Content:
+  - Real SOX audits where evidence replay would have helped
+  - Difference between "documenting" and "proving" changes
+  - Deterministic change reproduction as compliance advantage
+  - Building governance capabilities into dbt pipelines
+  CTA: "Could you replay your last schema change exactly?"
 
-  Technical Deep-Dive: "Deterministic Database Replay (Theory & Practice)"
+  Technical Deep-Dive: "Deterministic dbt Replay (Theory & Practice)"
 
-  Platform: Personal blog + r/PostgreSQLLength: 1,500 words with implementationHook: Advanced
-  technical content for DBAsContent:
-  - Isolation requirements for safe replay
-  - Scratch schema patterns
-  - State capture and restoration techniques
-  - Performance considerations
-  CTA: "Have you implemented replay capabilities?"
+  Platform: Personal blog + r/dbt
+  Length: 1,500 words with implementation
+  Hook: Advanced technical content for data engineers
+  Content:
+  - Isolation requirements for safe dbt replay
+  - Scratch schema patterns for governance testing
+  - State capture and restoration for data transformations
+  - Performance considerations for dbt hooks
+  CTA: "Have you implemented deterministic dbt replay?"
 
   First Community Demo
 
-  Platform: Discord/Slack live sessionTitle: "Building a Simple Evidence Bundle"Content:
-  - 30-minute live coding session
-  - Create hash chain manually
-  - Generate signed receipt
-  - Demonstrate verification
-  Audience: 15-20 engaged community members
+  Platform: dbt Community Slack live session
+  Title: "Building a Simple DEF (Data Evidence Format) Bundle"
+  Content:
+  - 30-minute live dbt session
+  - Add governance hooks to dbt project
+  - Generate signed data change evidence
+  - Demonstrate independent verification
+  Audience: 15-20 engaged dbt community members
 
   Content Amplification
 
   - Email list launch (simple landing page)
-  - Newsletter #1: "Why I'm Building Forensic Tools"
+  - Newsletter #1: "Why I'm Building Data Governance Tools"
   - Cross-post best content to dev.to, Hashnode
+  - Begin messaging about two-SKU approach (Review → Gate progression)
 
   ---
   Week 7-8: The Anticipation Build
 
-  Theme: "The Solution Exists (Almost)"
+  Theme: "The Data Governance Solution Exists (Almost)"
 
-  Blog Post 4: "We Need a Flight Recorder for Automation"
+  Blog Post 4: "We Need a Flight Recorder for Data Pipelines"
 
-  Platform: Personal blog + HackerNewsLength: 900 wordsHook: Aviation analogy for technical
-  audienceContent:
+  Platform: Personal blog + HackerNews
+  Length: 900 words
+  Hook: Aviation analogy for data engineering audience
+  Content:
   - How black boxes transformed aviation safety
-  - Why automation needs similar forensic capabilities
-  - Technical requirements for "flight recorders"
-  - What this would mean for incident response
-  CTA: "What would change if every automation had a black box?"
+  - Why dbt pipelines need similar governance capabilities
+  - Technical requirements for data change "flight recorders"
+  - What this would mean for SOX compliance and audit prep
+  CTA: "What would change if every dbt run had a governance black box?"
 
-  Technical Manifesto: "The Evidence-First Architecture"
+  Technical Manifesto: "The Data-First Governance Architecture"
 
-  Platform: GitHub gist + technical communitiesLength: 800 words + diagramsHook: Vision document
-  for forensic automationContent:
-  - Architecture principles for evidence capture
-  - Integration patterns with existing tools
-  - Performance and security considerations
-  - Open source approach to trust
-  CTA: "Would you use something like this?"
+  Platform: GitHub gist + dbt community
+  Length: 800 words + diagrams
+  Hook: Vision document for data platform governance
+  Content:
+  - Architecture principles for data change evidence capture
+  - Integration patterns with dbt, Snowflake, Databricks
+  - Performance and security considerations for warehouse hooks
+  - Open source approach to independent verification
+  CTA: "Would you use something like this for your data platform?"
 
   Soft Product Teaser
 
-  Platform: X/Twitter, newsletterContent:
+  Platform: X/Twitter, newsletter
+  Content:
   "I've been working on something.
 
-  Every automation should have a flight recorder.
-  Every database change should have forensic evidence.
-  Every incident should be replayable.
+  Every dbt run should have governance evidence.
+  Every schema change should have approval proof.
+  Every data transformation should be attestable.
 
-  Coming soon. OSS. Postgres-native.
-  Built by engineers, for engineers."
+  Start with listen-only Review mode.
+  Graduate to full Gate enforcement when ready.
+
+  Coming soon. OSS. Warehouse-native.
+  Built by data engineers, for data engineers."
 
   Community Poll & Feedback
 
-  Platform: Twitter, Reddit, DiscordQuestion: "Biggest gap in your incident response
-  toolkit?"Options:
-  - Can't replay incidents deterministically
-  - No forensic evidence for auditors
-  - Observability shows symptoms, not causes
+  Platform: Twitter, Reddit, Discord
+  Question: "Biggest gap in your data governance toolkit?"
+  Options:
+  - Can't replay dbt changes deterministically
+  - No change control evidence for SOX auditors
+  - Data monitoring shows changes, not approvals
   - Other (please specify)
 
   ---
@@ -200,30 +229,30 @@ Clyra Pre-Launch Content Strategy: "The Evidence Revolution"
 
   Time Budget: 15 hours/week
 
-  - Blog writing: 6 hours/week (1 major post)
-  - Community engagement: 4 hours/week (Reddit, Discord, Slack)
-  - Social media: 3 hours/week (X/Twitter, LinkedIn)
+  - Blog writing: 6 hours/week (1 major post focused on data governance)
+  - Community engagement: 4 hours/week (dbt Community, r/dataengineering, data platform Slack channels)
+  - Social media: 3 hours/week (X/Twitter data platform content, LinkedIn data professionals network)
   - Email/Newsletter: 2 hours/week (list building, content)
 
   Channel Prioritization
 
   Tier 1: Technical Credibility (60% effort)
 
-  - Personal blog - Thought leadership platform
-  - r/PostgreSQL - Core technical community
-  - PostgresWeekly - Industry newsletter submission
+  - Personal blog - Data governance thought leadership platform
+  - r/dbt - Core data transformation community
+  - dbt Community Slack - Industry community participation
 
-  Tier 2: Developer Communities (30% effort)
+  Tier 2: Data Platform Communities (30% effort)
 
-  - r/devops - Incident response audience
-  - r/mlops - AI automation audience
+  - r/dataengineering - Data pipeline governance audience
+  - r/BusinessIntelligence - Analytics compliance audience
   - HackerNews - 2 strategic submissions
 
   Tier 3: Amplification (10% effort)
 
-  - X/Twitter - Daily insights and engagement
-  - LinkedIn - B2B professional network
-  - Discord/Slack - Real-time community building
+  - X/Twitter - Daily data platform insights and engagement
+  - LinkedIn - Data professionals and compliance network
+  - Discord/Slack - Real-time dbt community building
 
   ---
   Content Distribution Matrix
@@ -261,16 +290,16 @@ Clyra Pre-Launch Content Strategy: "The Evidence Revolution"
   Engagement
 
   - Email list: 300 subscribers
-  - Community mentions: Track "evidence vs observability"
-  - Technical discussions: Lead 5+ meaningful threads
-  - Speaking opportunities: 1 community talk/podcast
+  - Community mentions: Track "data change control vs monitoring"
+  - Technical discussions: Lead 5+ meaningful dbt governance threads
+  - Speaking opportunities: 1 data community talk/podcast (dbt meetup, data engineering)
 
   Validation
 
-  - Problem resonance: Comments confirming evidence gap
-  - Solution interest: "Would use this" responses
-  - Technical credibility: Postgres community recognition
-  - Early adopter pipeline: 50+ interested developers
+  - Problem resonance: Comments confirming data governance gap
+  - Solution interest: "Would use this for SOX compliance" responses
+  - Technical credibility: dbt community recognition
+  - Early adopter pipeline: 50+ interested data engineers
 
   ---
   Content Repurposing Strategy
@@ -288,40 +317,41 @@ Clyra Pre-Launch Content Strategy: "The Evidence Revolution"
   - Code gists (GitHub/GitLab)
   - Stack Overflow answers (build authority)
   - Community tutorials (Discord/Slack)
-  - Speaking topics (meetups/conferences)
+  - Speaking topics (dbt meetups/data conferences)
+  - ServiceNow/Jira integration content (attested change tickets)
 
   ---
   Launch Amplification Setup
 
   Week 8 Outcomes:
 
-  - Warm audience: 300+ email subscribers expecting launch
-  - Community trust: Recognized expert in forensic automation
-  - Content backlog: 4 pillar pieces + 20+ social posts
-  - Network: 50+ engaged community members
-  - Messaging: Proven "evidence vs observability" resonance
+  - Warm audience: 300+ email subscribers expecting data governance launch
+  - Community trust: Recognized expert in dbt governance and SOX compliance
+  - Content backlog: 4 pillar pieces on data platform governance + 20+ social posts
+  - Network: 50+ engaged dbt community members
+  - Messaging: Proven "data change control vs monitoring" resonance
 
   Launch Day Advantages:
 
-  - Immediate amplification: Community shares launch
-  - Credible messenger: Known expert, not unknown vendor
-  - Pre-validated problem: Audience already aware of gap
-  - Warm pipeline: Interested developers ready to try
-  - Content foundation: Launch builds on existing narrative
+  - Immediate amplification: dbt community shares launch
+  - Credible messenger: Known data governance expert, not unknown vendor
+  - Pre-validated problem: Data teams already aware of SOX compliance gap
+  - Warm pipeline: Interested data engineers ready to try dbt integration
+  - Content foundation: Launch builds on existing data governance narrative
 
   ---
   Risk Mitigation
 
   Content Calendar Backup Plans
 
-  - Low engagement: Pivot to more technical/tutorial content
-  - Negative feedback: Address concerns transparently
-  - Time constraints: Pre-write evergreen content in batches
-  - Community rejection: Focus on value, avoid any promotion
+  - Low engagement: Pivot to more dbt tutorial/hands-on content
+  - Negative feedback: Address SOX compliance concerns transparently
+  - Time constraints: Pre-write evergreen dbt governance content in batches
+  - Community rejection: Focus on data platform value, avoid any promotion
 
   Message Testing & Iteration
 
-  - A/B test headlines on X/Twitter before blog posts
-  - Monitor comment sentiment for messaging refinement
-  - Track which technical topics get most engagement
-  - Adjust positioning based on community feedback
+  - A/B test data governance headlines on X/Twitter before blog posts
+  - Monitor dbt community sentiment for SOX messaging refinement
+  - Track which data platform topics get most engagement
+  - Adjust positioning based on data engineering community feedback

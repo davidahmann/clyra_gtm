@@ -1,142 +1,135 @@
-Clyra Go-to-Market Strategy
+Clyra v4.0 Go-to-Market Strategy
 
-  "From Symptoms to Proof: The WAL LSN Revolution"
+  "Data Change Control & Attestation for Modern Pipelines"
 
   ---
   Executive Summary
 
-  The Tension: Your AI agents are writing to production. Your observability tools show what
-  happened. Your auditors ask: "Can you prove it?" And you realize—logs aren't evidence.
+  The Tension: Your data pipelines and dbt models are changing production schemas. Your observability tools show what happened. Your auditors ask: "Can you prove this change was approved and safe?" And you realize—logs aren't evidence.
 
-  The Purple Cow: Clyra is the only platform that anchors evidence to Postgres WAL LSN, enables
-  deterministic offline replay, and produces signed bundles that auditors can verify independently.
-   In 10 minutes, go from pilot to PCI attestation.
+  The Purple Cow: Clyra is the only platform that provides data change control with warehouse-native anchoring (Snowflake QUERY_HISTORY, Delta commits, WAL LSN), deterministic replay, and produces signed DEF/PEF bundles that auditors can verify independently. In 10 minutes, go from dbt hook to SOX attestation.
 
-  The Mission: Become the forensic standard for automation runtimes within 18 months. When
-  enterprises ask "How do we prove our AI agents are safe?" the answer is always "Clyra."
+  The Mission: Become the data change control standard for modern pipelines within 18 months. When enterprises ask "How do we prove our data changes are compliant?" the answer is always "Clyra."
 
   ---
-  1. The Great Observability Lie (Tension Marketing)
+  1. The Great Data Governance Gap (Tension Marketing)
 
   The Status Quo Delusion
 
-  "We're covered—we have Datadog, logs, traces, and metrics."
+  "We're covered—we have dbt docs, Snowflake logs, and Monte Carlo alerts."
 
   The Hidden Reality
 
   Observability shows symptoms. Auditors need evidence.
 
-  When your automation corrupts a customer record, observability tells you:
-  - ❌ "Error rate spiked at 2:47 PM"
-  - ❌ "Database connection count increased"
-  - ❌ "Response time degraded"
+  When your dbt model corrupts a revenue metric, observability tells you:
+  - ❌ "Schema test failed at 2:47 PM"
+  - ❌ "Row count changed unexpectedly"
+  - ❌ "Downstream dashboards show anomalies"
 
   When auditors investigate, they need:
-  - ✅ "Exactly what changed in the database"
-  - ✅ "Cryptographic proof it actually happened"
-  - ✅ "Deterministic replay showing root cause"
-  - ✅ "Signed attestation mapping to compliance controls"
+  - ✅ "Exactly what changed in the data model"
+  - ✅ "Cryptographic proof the change was approved"
+  - ✅ "Deterministic replay of the transformation"
+  - ✅ "Signed attestation mapping to SOX ITGC controls"
 
   The Inconvenient Truth
 
-  95% of AI pilots that reach production can't answer three questions:
-  1. What exactly changed?
-  2. Can you prove it happened?
-  3. Can you replay it deterministically?
+  95% of data platform teams that reach production can't answer three questions:
+  1. What exactly changed in the schema/metric?
+  2. Can you prove it was approved?
+  3. Can you replay the transformation deterministically?
 
-  Result: Auditors say no. Pilots stall. Trust erodes.
+  Result: Auditors block data initiatives. SOX compliance fails. Trust erodes.
 
   ---
   2. Purple Cow Positioning: "The Only"
 
   What Makes Clyra Impossible to Ignore
 
-  The Only Platform Anchoring Evidence to Postgres WAL LSN
+  The Only Platform with Data-First, Agent-Ready Architecture
+
+  - Status Quo: Data governance and AI governance as separate problems
+  - Clyra: One control point protecting data pipelines today, AI agents tomorrow
+
+  The Only Solution with Warehouse-Native Anchoring
 
   - Status Quo: Logs with timestamps that can drift
-  - Clyra: Snapshots anchored to Write-Ahead Log sequence numbers—the immutable truth of what
-  actually hit the database
+  - Clyra: Evidence anchored to Snowflake QUERY_HISTORY, Delta commits, WAL LSN—the immutable truth of what actually changed
 
-  The Only Solution with Deterministic Offline Replay
+  The Only Platform with Two-SKU Progressive Adoption
 
-  - Status Quo: "Try to reproduce the bug in staging"
-  - Clyra: Exact reproduction in isolated scratch schema, every time, with signed Replay
-  Certificate
+  - Status Quo: "All-or-nothing" enforcement platforms
+  - Clyra: Start with Review (listen-only) → Graduate to Gate (full enforcement)
 
-  The Only System with Independent Verifiers
+  The Only System with Independent DEF/PEF Verifiers
 
-  - Status Quo: "Trust our dashboard"
-  - Clyra: Go and TypeScript verifiers you run offline, with golden test vectors—verify without
-  trusting us
+  - Status Quo: "Trust our vendor dashboard"
+  - Clyra: Go and TypeScript verifiers you run offline, with golden test vectors—verify without trusting us
 
-  The Only Platform Embedding Governance in Every Action
+  The Only Platform Embedding Governance in Every Change
 
-  - Status Quo: Compliance is an afterthought
-  - Clyra: Every transaction carries governance DNA—Reliability · Transparency · Accuracy ·
-  Oversight
+  - Status Quo: Compliance is documentation theater
+  - Clyra: Every dbt run carries governance DNA—Reliability · Transparency · Accuracy · Oversight
 
-  The Only Tool Creating Attestations in 10 Minutes
+  The Only Tool Creating SOX Attestations from dbt Runs
 
-  - Status Quo: Months of compliance preparation
-  - Clyra: clyra attest --framework pci → signed PCI DSS attestation, ready for auditor review
+  - Status Quo: Months of SOX ITGC evidence gathering
+  - Clyra: dbt hook → DEF bundle → clyra attest --framework sox → signed attestation, ready for auditor review
 
   ---
   3. Tension-Based Messaging Architecture
 
   Level 1: The Uncomfortable Truth (Hook)
 
-  "Your AI agents just wrote to production. Can you prove what they did?"
+  "Your dbt models just changed the revenue calculation. Can you prove the change was approved and safe?"
 
   Level 2: The Hidden Gap (Agitate)
 
-  "Logs show the request. Metrics show the impact. But auditors need forensic evidence. Can you 
-  replay yesterday's refund run deterministically? Can you prove no duplicate charges occurred? 
-  Your observability tools can't."
+  "dbt logs show the run. Tests show the results. But SOX auditors need forensic evidence. Can you replay yesterday's schema migration deterministically? Can you prove no unapproved changes occurred? Your observability tools can't."
 
-  Level 3: The Forensic Bridge (Insight)
+  Level 3: The Data Governance Bridge (Insight)
 
-  "The only source of truth is the Postgres WAL LSN. Anchor your snapshots there. Capture exact 
-  state changes. Replay in isolation. Sign the evidence."
+  "The only source of truth is the warehouse anchor—QUERY_HISTORY, Delta commits, WAL LSN. Anchor your evidence there. Capture exact schema changes. Replay in isolation. Sign the attestation."
 
   Level 4: The 10-Minute Proof (Resolve)
 
-  "clyra demo contracts → evidence.zip → clyra verify → clyra replay → clyra attest --framework 
-  pci. From pilot to signed attestation in 10 minutes."
+  "clyra dbt init → dbt run with hooks → DEF bundle → clyra verify → clyra replay → clyra attest --framework sox. From dbt project to signed SOX attestation in 10 minutes."
 
   The Purple Cow Tagline
 
-  "Proof, not promises."
+  "Evidence, not just alerts."
 
   ---
   4. Target Personas (Tension-Aware)
 
-  Primary Champion: The Skeptical Platform Engineer
+  Primary Champion: The Data Platform Engineer
 
-  - Current Belief: "Our monitoring stack shows everything"
-  - Hidden Fear: "What if something breaks and I can't prove what happened?"
-  - Tension Point: "Incident response without replay capability"
-  - Purple Cow Hook: "Watch this—deterministic replay of last Tuesday's corruption"
+  - Current Belief: "Our dbt tests and Snowflake logs show everything"
+  - Hidden Fear: "What if SOX audit asks for proof and I have logs, not evidence?"
+  - Tension Point: "Schema changes without approval trail"
+  - Purple Cow Hook: "Watch this—deterministic replay of last Tuesday's dbt run with signed approval"
 
-  Validator: The Auditor-Weary CISO
+  Validator: The SOX-Weary Controller
 
-  - Current Belief: "We document our AI governance processes"
-  - Hidden Fear: "Auditor asks for proof and we have PowerPoints, not evidence"
-  - Tension Point: "Compliance theater vs. forensic truth"
-  - Purple Cow Hook: "Here's a signed bundle your QSA can verify independently"
+  - Current Belief: "We document our data change control processes"
+  - Hidden Fear: "SOX auditor asks for proof and we have tickets, not evidence"
+  - Tension Point: "Change control documentation vs. forensic truth"
+  - Purple Cow Hook: "Here's a signed DEF bundle your auditor can verify independently"
 
-  Economic Buyer: The Pilot-Stalled VP Engineering
+  Economic Buyer: The Head of Data Platform
 
-  - Current Belief: "Our AI projects are technically sound"
-  - Hidden Fear: "We built it but can't ship it because auditors block everything"
-  - Tension Point: "Innovation velocity vs. compliance friction"
-  - Purple Cow Hook: "Ship automation 3x faster with built-in attestation"
+  - Current Belief: "Our data pipelines are technically sound"
+  - Hidden Fear: "We built modern data stack but can't prove SOX compliance"
+  - Tension Point: "Data platform velocity vs. compliance friction"
+  - Purple Cow Hook: "Ship dbt models 3x faster with built-in SOX attestation"
 
-  Technical Evaluator: The WAL-Savvy Postgres DBA
+  Technical Evaluator: The Warehouse-Savvy Data Engineer
 
-  - Current Belief: "I understand my database better than any tool"
-  - Hidden Fear: "Automation is changing data and I have no forensic trail"
-  - Tension Point: "Database integrity vs. automation opacity"
-  - Purple Cow Hook: "Finally—evidence anchored to LSN, like you always wanted"
+  - Current Belief: "I understand my Snowflake/Databricks warehouse better than any tool"
+  - Hidden Fear: "dbt models are changing schemas and I have no forensic trail"
+  - Tension Point: "Data integrity vs. pipeline velocity"
+  - Purple Cow Hook: "Finally—evidence anchored to QUERY_HISTORY and Delta commits, like you always wanted"
 
   ---
   5. Purple Cow Feature Architecture
@@ -171,17 +164,17 @@ Clyra Go-to-Market Strategy
   ├─ Independent Go/TS verifiers
   └─ 10-minute attestation pipeline (PCI/HIPAA pass/fail; EU AI Act/NIST overlays)
 
-  The 10-Minute Purple Cow Experience
+  The 10-Minute Data Platform Experience
 
-  clyra init                              # Policy scaffold in 30 seconds
-  clyra quickstart                        # Full stack up (Gateway+Recorder+Postgres)
-  clyra demo contracts                    # Generate evidence with real corruption/prevention
-  clyra verify evidence.zip --explain     # Independent verification details  
-  clyra replay                           # Deterministic offline reproduction
-  clyra attest --framework pci           # Signed PCI DSS attestation
-  clyra report --daily-review            # PCI Req-10 rollup automation
+  clyra dbt init my-project               # dbt project with Clyra hooks
+  make quickstart-data                    # Full stack up (Gateway+Recorder+Snowflake simulator)
+  clyra demo data --platform snowflake   # Generate DEF bundles from warehouse operations
+  clyra verify evidence.zip --explain     # Independent verification with lineage
+  clyra replay --platform snowflake      # Deterministic data-aware reproduction
+  clyra attest --framework sox           # Signed SOX ITGC attestation
+  clyra report --daily-review --include-data-changes # Enhanced daily review
 
-  No other platform delivers signed compliance attestation in 10 minutes.
+  No other platform delivers signed SOX attestation from dbt runs in 10 minutes.
 
   ---
   6. Go-to-Market Motion: The Forensic Wedge
@@ -348,31 +341,32 @@ Clyra Go-to-Market Strategy
   ---
   10. Pricing: The Purple Cow Premium
 
-  Community (Free Forever)
+  Clyra Review ($20-50K/year)
 
-  - Core Gateway + Recorder for Postgres 15/16
-  - Unlimited forensic replay
-  - Independent verifiers
-  - All enforcement primitives
-  - Hook: "Prove your automation works—free forever"
+  - Listen-only detection and attestation
+  - dbt hook integration
+  - Daily review automation
+  - ServiceNow/Jira export
+  - Badge program access
+  - Hook: "Start safe with listen-only mode"
 
-  Teams ($500/month)
+  Clyra Gate ($75-150K/year)
 
-  - Everything in Community +
-  - Priority support (24hr SLA)
-  - SSO/SAML authentication
-  - Slack integration for approvals
-  - Multi-cluster management
-  - Hook: "Team-wide forensic standards"
+  - Everything in Review +
+  - Full enforcement primitives
+  - Policy gates and kill-switches
+  - BEC-grade approval certs
+  - Advanced GenAI security
+  - Hook: "Graduate to full enforcement when ready"
 
-  Enterprise (Starting $2,500/month)
+  Enterprise Plus (Custom)
 
-  - Everything in Teams +
-  - SLA guarantees on latency
-  - Custom policy consulting
-  - Dedicated forensic success manager
-  - Advanced threat detectors
-  - Hook: "Enterprise-grade evidence with C-suite confidence"
+  - Everything in Gate +
+  - Multi-framework compliance packs
+  - Dedicated compliance success manager
+  - Custom detector development
+  - Multi-tenant deployment
+  - Hook: "Enterprise-scale data governance"
 
   Purple Cow Add-Ons
 
