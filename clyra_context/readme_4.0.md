@@ -25,6 +25,7 @@ One control point, two guarantees:
 ## 🚀 10-Minute PLG Path
 
 **Data Platform Track (Primary):**
+
 ```bash
 # 1. Listen-only start → zero disruption
 clyra review init --dbt-cloud-webhook
@@ -43,6 +44,7 @@ clyra gate enable --policy sox-controls.yaml
 ```
 
 **Universal Track (Strategic):**
+
 ```bash
 # 1. Install → local stack up
 make quickstart
@@ -68,11 +70,13 @@ clyra report --daily-review
 ## 🎯 Key Differentiators
 
 ### **vs. Observability Tools (Datadog, Monte Carlo)**
+
 - **Not just lineage, but proof**: Signed receipts vs. nice dashboards
 - **Active enforcement**: Block unsafe changes vs. alert after the fact
 - **Independence matters**: Platform-neutral evidence vs. vendor lock-in
 
 ### **vs. Database Governance (Snowflake, Databricks built-ins)**
+
 - **Cross-platform**: Same evidence works across all your data stack
 - **Enforcement-first**: Prevention, not just monitoring
 - **Agent-ready**: Today's data controls become tomorrow's AI governance
@@ -80,6 +84,7 @@ clyra report --daily-review
 ## Key Features
 
 ### 📊 Data Platform Enforcement (New in v4.0)
+
 - **dbt integration**: Hooks for evidence generation, CI gates for policy violations
 - **Warehouse-native guards**: SQL safety macros, approval token validation
 - **Activation gateway**: HTTP proxy for reverse-ETL with comprehensive enforcement
@@ -87,6 +92,7 @@ clyra report --daily-review
 - **SOX ITGC compliance**: Change control, segregation of duties, signed attestations
 
 ### 🛡️ GenAI Security Hardening (Enhanced in v4.0)
+
 - **Deepfake/BEC defenses**: 62% of orgs hit by deepfake attacks — comprehensive protection
 - **Prompt injection detection**: Built-in heuristics with shadow-mode defaults
 - **BEC-grade approval certificates**: SSO binding, challenge-response, payload hash binding
@@ -94,18 +100,21 @@ clyra report --daily-review
 - **Enhanced kill-switch**: Multi-trigger (data bursts, GenAI threats, error spikes)
 
 ### 🎙️ Voice/Conversation Compliance (New in v4.0)
+
 - **TCPA compliance**: Disclaimer enforcement, consent tracking, opt-out mechanisms
 - **Voice session correlation**: Link voice interactions to API actions in audit trails
 - **UCaaS integration**: Teams, Slack, Zoom session correlation with metadata-only capture
 - **Barge-in support**: Human interruption capability with <200ms response time
 
 ### 🔧 CI/CD + Code Change Control (New in v4.0)
+
 - **GitHub Actions integration**: Evidence verification, policy gates, badge generation
 - **Commit SHA binding**: Approval certificates tied to specific commits
 - **SOX ITGC for code**: Change control, segregation of duties, deployment evidence
 - **Deploy rate limiting**: Prevent runaway automation, enforce approval workflows
 
 ### 🔒 Enhanced Enforcement Primitives
+
 - **Idempotency**: Prevent duplicate/retry operations with HMAC fingerprints
 - **BEC-grade Approval Certificates**: Enhanced with SSO binding, challenge-response
 - **Velocity Guards**: Sliding window rate limits and burst protection
@@ -114,6 +123,7 @@ clyra report --daily-review
 - **Prompt-loop breaker**: Cool-off policies for repetitive agent behaviors
 
 ### 📋 Multi-Framework Compliance
+
 - **SOX ITGC**: Data change control, segregation of duties (NEW)
 - **PCI/HIPAA**: Pass/fail attestations with enhanced daily reviews
 - **EU AI Act/NIST**: Overlay mappings with governance metadata
@@ -123,6 +133,7 @@ clyra report --daily-review
 ## Architecture
 
 **Data-Led Flow:**
+
 ```
 [dbt Run] → [Hooks] → [DEF Bundle] → [SOX Attestation]
      ↓
@@ -132,6 +143,7 @@ clyra report --daily-review
 ```
 
 **Universal Flow:**
+
 ```
 [Agent/App] → [Gateway] → [Recorder] → [Postgres/Warehouse]
                    ↓
@@ -143,12 +155,14 @@ clyra report --daily-review
 ### Core Components (Enhanced v4.0)
 
 **Data Platform Components:**
+
 - **dbt Integration**: Hooks, macros, CI gates with comprehensive metadata capture
 - **Warehouse Anchors**: Native Snowflake/Databricks/Postgres integration with lineage tracking
 - **Activation Gateway**: HTTP proxy for reverse-ETL with full enforcement primitive support
 - **SQL Safety Guards**: Warehouse-native stored procedures and approval token validation
 
 **Universal Foundation:**
+
 - **Gateway**: Enhanced with GenAI threat detection, BEC defenses, voice session handling
 - **Recorder**: Metadata-only snapshots with warehouse-specific anchoring mechanisms
 - **Replay Engine**: Enhanced with data replay capabilities, deterministic schema recreation
@@ -156,6 +170,7 @@ clyra report --daily-review
 - **Verifiers**: Enhanced with data lineage validation, GenAI threat correlation
 
 **GenAI Security Layer:**
+
 - **Threat Detectors**: Built-in prompt injection, external deepfake APIs, BEC classification
 - **Enhanced Approval System**: SSO binding, challenge-response, payload hash binding
 - **Kill-Switch Evolution**: Multi-trigger system for data/GenAI/universal threat response
@@ -271,6 +286,7 @@ make attest-sample
 ## Key Commands (Enhanced v4.0)
 
 ### Data Platform Commands
+
 ```bash
 # dbt project initialization with Clyra hooks
 clyra dbt init [project-name]
@@ -286,6 +302,7 @@ clyra demo data --platform snowflake --tables 10
 ```
 
 ### Enhanced Universal Commands
+
 ```bash
 # Initialize with enhanced policy templates
 clyra init --template data|genai|universal
@@ -303,6 +320,7 @@ clyra policy test --golden-vectors --performance
 ```
 
 ### GenAI Security Commands
+
 ```bash
 # Test GenAI threat detection against attack vectors
 clyra genai test --attack-vectors prompt-injection,deepfake
@@ -315,6 +333,7 @@ clyra threats analyze evidence.zip --output-format json
 ```
 
 ### Enhanced Evidence & Compliance
+
 ```bash
 # Export with enhanced format support
 clyra export --format ndjson|def|pef --platform snowflake
@@ -354,18 +373,21 @@ Every evidence bundle embeds four enhanced governance pillars:
 ## Performance SLAs (New v4.0)
 
 **Data Platform:**
+
 - dbt hook execution: <2s overhead per run
 - Warehouse policy queries: <5s response time
 - Activation gateway proxy: <15ms p95 latency
 - Schema change validation: <1s per operation
 
 **Universal Operations:**
+
 - Gateway processing: ≤15ms p95 (+3ms with full enforcement)
 - Recorder snapshots: ≤20ms p95 with metadata-only capture
 - Evidence generation: <5s DEF, <3s PEF bundles
 - Independent verification: <1s per bundle
 
 **GenAI Security:**
+
 - Prompt injection analysis: <100ms built-in detectors
 - External deepfake APIs: <500ms with timeout/fallback
 - BEC certificate validation: <10ms cryptographic verification
@@ -374,20 +396,25 @@ Every evidence bundle embeds four enhanced governance pillars:
 ## Differentiation Summary
 
 ### **Evidence vs. Observability**
+
 While Monte Carlo tells you what probably changed, Clyra gives you **signed, tamper-proof receipts** with cryptographic integrity.
 
 ### **Prevention vs. Detection**
+
 Think **seatbelt, not siren**. Block unsafe changes before they hit production vs. alerting after damage is done.
 
 ### **Independence Matters**
+
 Snowflake can't credibly audit itself. Clyra provides **neutral, portable evidence** that survives platform changes and vendor relationships.
 
 ### **Ready for Agents**
+
 Everyone else is building for today's pipelines. Clyra's architecture is **ready for tomorrow's GenAI agents** — same enforcement, same evidence format.
 
 ## Security
 
 ### Enhanced Security Model (v4.0)
+
 - **Zero-trust architecture**: Every component authenticated, encrypted in transit
 - **GenAI threat hardening**: Deepfake detection, BEC defenses, prompt injection protection
 - **BEC-grade approval certificates**: SSO binding, challenge-response, payload hash binding

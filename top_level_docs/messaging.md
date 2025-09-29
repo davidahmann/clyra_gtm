@@ -19,6 +19,8 @@ Works across dbt, Snowflake, Databricks, Postgres. Your evidence survives platfo
  • Built for what’s next
 The same controls protecting dbt pipelines today will protect AI agents tomorrow when they start writing to CRMs, finance systems, or contracts.
 
+Clyra is the data-change control & attestation layer: it blocks unsafe pushes and hands you signed proof auditors trust—built for data pipelines today, ready for AI agents tomorrow.
+
 ⸻
 
 3. Proof (why believe us)
