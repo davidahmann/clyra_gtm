@@ -234,12 +234,14 @@
 - Manifest generation with metadata
 - Journal event streaming
 - Artifact packaging
+- Payout metadata fields for future billing integration
 **Repository Paths**: `/internal/bundle/`, `/internal/bundle/def_builder.go`, `/internal/bundle/pef_builder.go`
 **Dependencies**: Story 1.3
 **Acceptance Criteria**:
 - DEF bundles include warehouse anchors
 - PEF bundles include automation evidence
 - Governance metadata embedded
+- Payout metadata fields included in bundles (run_id, actor_id, asset_id, change_intent, business_metric_refs[], payout_ref, currency)
 
 ### Story 1.5: Golden Test Vectors
 
@@ -1124,6 +1126,7 @@
 - Automated PCI Req-10 compliance with enhanced logging
 - Executive dashboard format with drill-down capabilities
 - SIEM-ready export formats (ECS/OCSF NDJSON)
+- Finance Pack (stub): payout candidates export (JSON/CSV) mapping agent_id|run_id → metric_ref → suggested_value (no billing)
 **Repository Paths**: `/internal/compliance/daily_review/`, `/cmd/clyra/report.go`, `/internal/review/daily_review/`, `/spec/compliance/daily_review.schema.json`
 **Dependencies**: Story 10.1, Story 10.2, Epic 6, Epic 7, Epic 8
 **Acceptance Criteria**:
@@ -1132,6 +1135,7 @@
 - PCI Req-10 fully automated
 - Export formats compatible with major SIEMs
 - Executive-friendly visualization
+- Payout candidate identification exported for finance system integration
 
 ---
 
