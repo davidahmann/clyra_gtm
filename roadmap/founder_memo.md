@@ -5,6 +5,10 @@ From: David
 
 ⸻
 
+Clyra creates forensic evidence for data pipelines and AI agents, turning every dbt run or agent action into signed proof auditors can verify. Today that's SOX compliance. Tomorrow it enables paying people, vendors and AI agents based on verified work.
+
+⸻
+
 1. Why Now
 
 Enterprises today are drowning in data changes and racing toward automation.
@@ -23,6 +27,7 @@ This is the wedge Clyra owns: tamper-evident control + proof across data and aut
 Clyra = Data Change Control & Attestation → Attribution → Results-Based Billing → Settlement Fabric.
 
 One platform, phased entry:
+
  1. Clyra Review (Data-first, SOX/PCI wedge)
  • Listen-only: dbt hooks, ServiceNow/Jira attested change tickets.
  • Verifier CLI + “Clyra Certified — SOX Ready” badge.
