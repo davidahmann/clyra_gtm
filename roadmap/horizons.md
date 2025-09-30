@@ -1,181 +1,707 @@
-Clyra Roadmap — Data-led, Agent-ready (with Early Payout Hooks)
+# Clyra Strategic Roadmap v2.0
 
-0) North Star
+## Data-Led Market Entry, Agent-Ready Architecture, Results-Based Billing Vision
 
-What we’re building: the neutral Data Change Control & Attestation layer that also becomes the settlement fabric for automation outcomes (agents, vendors, pipelines).
-How we get there: land with Review (listen-only evidence), expand to Gate (enforcement), add Attribution, then Results-based Billing, and finally broaden rails (stablecoin → fiat) as volume and trust grow.
+**Last Updated:** 2025-09-29
+**Status:** Strategic Planning Document
 
-Packaging
- • Clyra Review (land): listen-only, DEF/PEF bundles, daily rollups, ServiceNow/Jira export, verifier, badge.
- • Clyra Gate (upsell): idempotency, fences, velocity caps, kill-switch, SQL guardrails.
- • Clyra Billing Add-On (later): pricing policies, invoice/billing bundles, payout exporters/rails.
+---
 
-⸻
+## Executive Summary
 
-1) Guiding Principles
- • Data-led, agent-ready: dbt/Snowflake/Databricks first; same receipts/policies work for agents later.
- • Evidence before money: signed, portable proof (DEF/PEF) precedes attribution; attribution precedes payouts.
- • Agentless first: start with webhooks/QUERY_HISTORY; proxies/enforcement are opt-in.
- • Minimal viable economics: simulate payouts before money movement; start with stablecoins via trusted custodians.
+**What we're building:** The neutral Data Change Control & Attestation layer that proves every change is safe and audit-ready—and grows into the trusted settlement fabric for paying people, vendors, and AI agents based on verified results.
 
-⸻
+**How we get there:** Land with data platform evidence (dbt/warehouses), expand to enforcement, add attribution and results-based billing, then broaden to AI agents via MCP when timing is right.
 
-2) Horizon Plan
+**Strategic Positioning:**
 
-Horizon 0 (0–3 months) — Nail the Data Wedge, Seed Payout Metadata
+- **Primary wedge:** Data platform (dbt, Snowflake, Databricks, reverse-ETL) where budget exists TODAY
+- **Agent-ready architecture:** Same enforcement engine, same evidence formats (DEF/PEF), ready for AI agents TOMORROW
+- **Parallel optionality:** MCP Airlock as strategic hedge—can accelerate or defer based on market signals
 
-Objective: Prove value in 2 weeks for data teams; plant identifiers needed for outcomes/payouts later.
+---
 
-Deliver
- • dbt integration: pre/post-run hooks & macros emit DEF v0 (who/what/when, semantic deltas, dbt tests).
- • Listen-only ingestion: dbt Cloud webhooks + dbt Core wrapper (clyra run dbt …).
- • ServiceNow/Jira bridge (one-way): export JSON/CSV → Attested Change Ticket.
- • Verifier + Badge: minimal verifier CLI; “Clyra Certified — SOX Ready.”
- • GenAI risk overlay (shadow): idempotency, rate caps, tenant fences, kill-switch defaults.
+## 0. North Star & Guiding Principles
 
-Seed payout hooks (metadata-only)
- • Add fields to receipts/bundles: run_id, actor_id, asset_id, change_intent, business_metric_refs[], payout_ref, currency.
- • Finance Pack (stub): “payout candidates” export (JSON/CSV) mapping agent_id|run_id → metric_ref → suggested_value (no billing).
+### North Star Vision
 
-KPIs
- • First attested ticket ≤ 2 weeks; 3 design partners live on Review; 1 paid pilot.
+> "Clyra makes sure every data or agent change is safe and audit-ready today, and is growing into the trusted system that lets companies pay people, vendors, and AI agents based on verified results tomorrow."
 
-Repo touchpoints (examples)
- • /spec/pef/* (DEF/PEF fields), /verifier/*, /cmd/clyra/export.go, /docs/plg/*, /docs/compliance/*, /examples/quickstart-compose/*.
+### Guiding Principles
 
-⸻
+1. **Data-led, agent-ready:** Prove value with dbt/Snowflake/Databricks first; same receipts/policies work for agents later
+2. **Evidence before money:** Signed, portable proof (DEF/PEF) precedes attribution; attribution precedes payouts
+3. **Progressive adoption:** Review (listen-only) → Gate (enforcement) → Attribution → Billing
+4. **Minimal viable economics:** Simulate payouts before money movement; start with stablecoins via trusted custodians
+5. **Disciplined sequencing:** Prove core thesis before expanding surface area
 
-Horizon 1 (3–9 months) — Outcome Attribution (Auditable, Cross-Stack)
+### Product Packaging
 
-Objective: Tie safe changes (and agent runs) to measurable outcomes — no billing yet.
+- **Clyra Review** (land): Listen-only detection, DEF/PEF bundles, ServiceNow/Jira export, badge program
+- **Clyra Gate** (expand): Full enforcement with idempotency, fences, velocity caps, kill-switch, SQL guardrails
+- **Clyra Airlock (MCP)** (strategic option): Agent security & connectivity for MCP protocol—activates when market signals confirm
+- **Clyra Attribution** (future): Outcome ledger, attribution certificates, ROI proof
+- **Clyra Billing** (future): Results-based pricing, invoice generation, payout rails
 
-New components
+---
 
- 1. Outcome Ledger (append-only)
-Records metric observations with: metric_id, value, ts, window, source_system, confidence, actor_id, run_ref(DEF|PEF); ingests from dbt exposures/tests, warehouse queries (QUERY_HISTORY/Delta), reverse-ETL job outcomes.
- 2. Attribution Graph
-Deterministic linkage from change → downstream assets → business metric (last-touch, time-decay v0). Emits signed Attribution Certificate referencing DEF/PEF run_ids.
- 3. Outcome Policies (read-only)
-YAML describing allowed metrics, lookback windows, minimum confidence, exclusion periods.
+## 1. Horizon 0 (Months 0-3) — Nail the Data Wedge
 
-Shadow payout simulation
- • Generate “Shadow Billing Bundles” (JSON + PDF) from Attribution Certificates using hypothetical rate cards; clearly labeled non-settlement.
+### Objective
 
-Agent hooks (lightweight)
- • Allow PEF runs (agents) to write outcomes (e.g., meetings booked, tickets resolved) to the Ledger; receive Attribution Certificates alongside dbt runs.
+Prove value in ≤2 weeks for data teams; achieve product-market fit with data platform wedge.
 
-KPIs
- • 2 customers use Attribution Certs in QBRs; ≥1 public case study “change → metric lift”.
+### What Ships (MVP v4.0)
 
-Repo
- • /internal/ledger/, /internal/attr/, /spec/pef/schemas/attribution_certificate.json, /cmd/clyra/attest.go, /docs/attestation.md.
+#### Data Platform Core
 
-⸻
+- ✅ **dbt Integration:** Hooks (pre/post-run), macros (SQL safety), CI gates, semantic delta detection
+- ✅ **Warehouse Anchors:** Snowflake (QUERY_HISTORY + session tags), Databricks (Delta commits), Postgres (WAL LSN)
+- ✅ **DEF v0 Format:** Data Evidence Format with warehouse-native anchoring, deterministic replay
+- ✅ **Activation Gateway:** HTTP proxy for reverse-ETL (Hightouch/Census) with enforcement primitives
+- ✅ **Listen-Only Ingestion:** dbt Cloud webhooks + dbt Core wrapper (`clyra run dbt`)
 
-Horizon 2 (9–18 months) — Results-Based Billing (Opt-in, Enterprise-Safe)
+#### ServiceNow/Jira Bridge (MVP)
 
-Objective: Convert attributable outcomes into invoices and (optionally) payouts.
+- ✅ **One-way export:** DEF/PEF bundles → Attested Change Ticket (JSON/CSV → REST API)
+- ✅ **Ticket format:** Attestation hash, verification link, compliance status, evidence attachment
 
-New components
+#### Badge Program
 
- 1. Pricing Policy Engine
-YAML→rules mapping Attribution Certs to billable units (floors/caps, per-metric rates, risk weights, exclusion windows). Policies are versioned & signed.
- 2. Invoice Generator & Exporters
-Billing Bundle: invoice.json, line_items.json, policy.yaml, attribution_certs/*.json, evidence_refs + human-readable PDF.
-Exports: JSON/CSV first → ServiceNow/Jira ticket; NetSuite/Stripe adapters later.
- 3. Dispute Workflow (lightweight)
-Mark cert under_review, attach counter-evidence, deterministic re-run.
- 4. Payout Rails v1 (stablecoins)
-Coinbase Accounts/Prime integration for USDC/EURC corridors; payout receipts chained into DEF/PEF; AP exports (QuickBooks/Xero CSV).
- 5. Agent Payouts (optional)
-Register agent_id + allowed metrics; compute payouts via same Ledger/Graph; guard with deterministic methods + confidence thresholds.
+- ✅ **Verification service:** Independent Go/TS verifiers run offline
+- ✅ **Badge issuance:** "Clyra Certified - SOX Compliant" badges for dbt projects
+- ✅ **Badge endpoint:** `clyra.io/badge/{framework}/{project-id}` with JWT signing
 
-Monetization
- • SaaS (Review/Gate) + 0.2–0.5% fee on stablecoin payouts (pilot corridors).
+#### Enhanced Universal Foundation
 
-Compliance & safety
- • Every billed line traces to signed evidence (DEF/PEF + Attribution Cert).
- • SOX/PCI overlays extended to billing artifacts.
+- ✅ **Gateway:** SchemaLock + Data Firewall with GenAI threat detection
+- ✅ **Recorder:** Flight Data Recorder with HMAC ingestion, metadata snapshots, warehouse anchoring
+- ✅ **Replay Engine:** Deterministic reproduction in scratch schemas
+- ✅ **Bundle Builder:** Unified DEF/PEF formats with Merkle trees, governance metadata
 
-KPIs
- • 1–2 customers piloting outcome-linked payouts or internal chargebacks; <2% monthly disputes; time-to-resolve ≤ 5 days.
+#### GenAI Security (Shadow Mode)
 
-Repo
- • /internal/pricing/, /cmd/clyra/billing.go, /spec/pef/*(billing refs), /docs/compliance/* (billing overlays), /docs/sop/disputes.md.
+- ✅ **Threat detection:** OWASP LLM mapping, prompt injection heuristics
+- ✅ **BEC-grade approvals:** SSO binding, challenge-response, payload hash binding
+- ✅ **Kill-switch:** Multi-trigger system (data + GenAI + universal)
 
-⸻
+#### Seed Payout Metadata (No Billing Logic)
 
-Horizon 3 (18+ months) — Ecosystem & Standards
+- ✅ **Receipt fields:** `run_id`, `actor_id`, `asset_id`, `change_intent`, `business_metric_refs[]`, `payout_ref`, `currency`
+- ✅ **Finance Pack stub:** "Payout candidates" export (JSON/CSV) mapping `agent_id|run_id → metric_ref → suggested_value`
+- ✅ **No money movement:** Metadata-only preparation for Horizon 2
 
-Objective: Make Clyra’s artifacts the trusted backbone across finance & audit workflows.
+#### MCP Airlock Foundation (Schema-Only)
 
-Scale-outs
- • Fiat rails via partners (Stripe Treasury, Wise, bank APIs).
- • Vertical outcome policy templates (Retail/FinServ/SaaS).
- • Auditor partnerships: 2–3 firms accept Billing Bundles as compliant evidence.
- • Open specs: DEF/PEF + Attribution Certs; third-party verifiers and SI playbooks.
+- ✅ **PEF v0 MCP extension:** Optional MCP fields in evidence schema (backward compatible)
+- ✅ **Strategic roadmap:** `/docs/mcp/ROADMAP.md` documenting vision and decision gates
+- ✅ **No enforcement logic:** Schema prep only, activates in Horizon 1B if market validates
 
-KPIs
- • 5+ enterprise customers using Billing Bundles; 2–3 auditor acknowledgments; 3 finance system adapters (NetSuite/Workday/SAP).
+### Success Criteria (Horizon 0)
 
-⸻
+**Technical:**
 
-Horizon 4 (3–7 years) — Visa-for-Agents Settlement Layer
+- ✅ First attested ticket generated in ≤2 weeks from installation
+- ✅ Performance SLAs met: Gateway ≤15ms p95, Recorder ≤20ms p95, dbt hook <2s overhead
+- ✅ Cross-verifier consistency: Go/TS verifiers produce identical results
 
-Objective: Become the neutral, evidence-anchored settlement fabric for automation and data outcomes.
+**Business:**
 
-What it looks like
- • Unified rails (stablecoin + fiat) with Attribution Certificates as the contractable truth for payouts.
- • Agents/vendors register rate cards; enterprises settle via Clyra with auditor-grade proof.
- • Network economics: at scale, a 0.2–0.5% fee across flows creates a $1B+ ARR path.
+- ✅ 3 design partners live on Clyra Review
+- ✅ 1+ paid pilot ($25-60k ACV)
+- ✅ 100+ GitHub stars from dbt community
+- ✅ 10+ dbt projects displaying Clyra Certified badges
 
-Prereqs achieved earlier
- • Wide DEF/PEF adoption, auditor acceptance, connectors into AP/ERP, low dispute rates.
+**Strategic:**
 
-⸻
+- ✅ ServiceNow/Jira integration proven in production
+- ✅ 1+ auditor acknowledges DEF/PEF evidence format
+- ✅ Badge program shows viral growth (≥50% badge adopters refer others)
 
-3) Engineering Focus & Guardrails
+### Repository Touchpoints
 
-Performance/SLOs (carry-forward)
- • Gateway p95 ≤ 15 ms; Recorder p95 ≤ 20 ms; dbt hook overhead < 2 s; diff < 2 s on demo.
+```
+/spec/pef/* (DEF/PEF schemas + MCP extension)
+/internal/warehouse/ (Snowflake/Databricks/Postgres anchoring)
+/internal/dbt/ (hooks, macros, CI gates)
+/internal/activation/ (reverse-ETL proxy)
+/bridges/servicenow/ (REST client, ticket formatter)
+/bridges/jira/ (Atlassian SDK, issue formatter)
+/internal/badge/ (certification service, JWT signing)
+/verifier/* (Go/TS independent verifiers)
+/cmd/clyra/review/ (listen-only commands)
+/docs/plg/* (10-minute PLG path)
+/examples/quickstart-data/ (dbt demo project)
+```
 
-Security defaults
- • Fail-closed validators, privacy-by-default (no body storage unless enabled), HMAC, mTLS, signed bundles, cosign, SBOMs, Scorecard/OSV/ZAP.
+---
 
-Adoption sequencing
- • Agentless first (webhooks/history), Review first, Gate second, then Attribution, then Billing (simulation → stablecoin → fiat).
+## 2. Horizon 1 (Months 3-9) — Enforcement + Outcome Attribution
 
-Repo discipline
- • Specs first (/spec/pef, /spec/pef/schemas/*), then engines; verifiers remain independent; sensitive paths gated by CODEOWNERS.
+### Decision Gate (Required Before Starting)
 
-⸻
+- ✅ 3+ paying customers on Clyra Review
+- ✅ $300k+ ARR from data platform wedge
+- ✅ 1+ auditor acknowledged DEF/PEF formats
+- ✅ ServiceNow/Jira integration proven in production
+- ✅ Badge program achieving >50% referral rate
 
-4) GTM & Pricing Hints
- • Land (Review): $25–60k ACV (enterprise) — SOX change control + attestation + SNOW/Jira bridge.
- • Expand (Gate): +30–70% uplift — fewer incidents, provable controls.
- • Billing Add-On: platform fee + per-line or % of attributed value (capped).
- • Payout fees: 0.2–0.5% on stablecoin flows (pilot corridors), fiat when partners are ready.
+### Objective
 
-⸻
+Enable full enforcement (Clyra Gate) for data platform customers AND tie changes to measurable business outcomes—no billing yet.
 
-5) Risks & Mitigations (pragmatic)
- • Category confusion: Always lead with Data Change Control & Attestation; position Attribution as ROI proof; Billing as opt-in.
- • Integration friction: agentless first; Compose quickstarts; one-way SNOW/Jira early; avoid invasive SDKs.
- • Attribution skepticism: simple, deterministic methods; publish methodology; customer overrides; keep raw Ledger events.
- • Compliance acceptance: minimal, signed formats; ship verifier; secure 2–3 auditor letters early.
- • Money movement risk: simulate first; stablecoin via reputable custody; phased corridors; tight KYC/AML posture through partners.
+---
 
-⸻
+### Horizon 1A: Enforcement Activation (Primary Track)
 
-6) What’s not changing
- • Recorder + diff/replay + proxy remain the OSS engine.
- • Review → Gate sequencing stays; enforcement is off by default until trust is earned.
- • Agent features leverage the same receipts/policies — no separate stack.
+#### What Ships
 
-⸻
+**Clyra Gate (Full Enforcement)**
 
-7) What’s newly emphasized
- • Payout metadata from Day 1 (no money movement).
- • Attribution Certificates before Billing.
- • Stablecoin payouts (small corridors) before fiat.
- • A clear, credible path to the settlement layer without derailing the core data wedge.
+- ✅ **Policy enforcement:** Allow/deny/HITL for data changes with <10ms latency overhead
+- ✅ **Enhanced primitives:** BEC-grade approvals, prompt-loop breakers, voice session fences, CI/CD controls
+- ✅ **Kill-switch activation:** Multi-trigger enforcement (schema bursts + GenAI threats + error spikes)
+- ✅ **SQL safety guards:** Advisory blocks on mass UPDATE/DELETE, rows_affected limits, allowlist maintenance
+- ✅ **Advanced GenAI security:** Full threat detection, external detector integration, shadow mode promotion
+
+**Enhanced ServiceNow/Jira Integration**
+
+- ✅ **Two-way sync:** Ticket status updates flow back to Clyra for audit trail
+- ✅ **Approval workflows:** HITL approvals via ServiceNow/Jira with cryptographic binding
+- ✅ **Badge automation:** Automatic badge issuance on successful attestation
+
+**Compliance Expansion**
+
+- ✅ **Multi-framework attestations:** SOX ITGC, PCI DSS, HIPAA, EU AI Act, NIST AI RMF, TCPA
+- ✅ **Automated daily reviews:** Enhanced with data changes + GenAI threat posture
+- ✅ **Auditor toolkit:** Verification guides, evidence validation procedures, framework mappings
+
+#### Success Criteria (1A)
+
+- ✅ 10+ customers on Clyra Review, 3+ converted to Clyra Gate
+- ✅ ≥30% Review → Gate conversion within 90 days
+- ✅ Kill-switch drills: 100% success (blocked within 5s)
+- ✅ Zero critical security vulnerabilities
+- ✅ $500k+ ARR (70% Review, 30% Gate)
+
+---
+
+### Horizon 1B: Agent Security via MCP Airlock (Parallel Track - CONDITIONAL)
+
+**⚠️ DECISION GATE: Only activate if ANY of these signals appear:**
+
+1. ≥2 existing customers explicitly request agent security/MCP support
+2. MCP adoption reaches critical mass (≥10k GitHub stars, ≥3 major platforms integrated)
+3. Real security incidents create CISO demand (malicious MCP servers, credential leakage)
+4. Strategic opportunity to own agent security category emerges
+5. Competitive threat: observability vendors add agent security features
+
+#### What Ships (If Activated)
+
+**Clyra Airlock Review (MCP)**
+
+- ✅ **MCP pass-through proxy:** Transparent relay with request/response canonicalization
+- ✅ **Policy matcher (dry-run):** Evaluate policies, log verdicts, no enforcement
+- ✅ **Signed receipts:** PEF v0 bundles with MCP extension fields
+- ✅ **Identity integration:** Okta/Entra OIDC with OAuth 2.0 Token Exchange (RFC 8693)
+- ✅ **Connectivity edge:** WebSocket reverse tunnel (client/server both dial out)
+- ✅ **Supply-chain allowlist:** Signed manifests for approved MCP servers (GitHub, Jira, Slack, etc.)
+- ✅ **HITL approvals:** Slack/Teams integration for write operations
+- ✅ **ServiceNow/Jira export:** "Attested Agent Action" tickets
+
+**Time to Ship:** 12 weeks with dedicated team (2-3 engineers)
+
+**Investment Required:** ~$150-300k (engineering + design partner support)
+
+#### Success Criteria (1B - If Shipped)
+
+- ✅ TTFSC (Time-to-First Secure Call) < 60 minutes
+- ✅ Standing credentials: 0 long-lived secrets in agent runtime
+- ✅ Coverage: ≥90% of MCP calls produce valid receipts
+- ✅ 2+ design partners running real workflows
+- ✅ $100-200k ARR from MCP-specific deployments
+
+#### Repository Impact (If Activated)
+
+```
+/internal/mcp/ (proxy, policy adapter, canonicalization)
+/internal/identity/ (STS, DPoP, OIDC adapters)
+/internal/connect/ (WebSocket relay, tunnel management)
+/cmd/clyra/airlock/ (MCP-specific commands)
+/examples/mcp-quickstart/ (GitHub, Jira demos)
+/docs/mcp/ (quickstart, policy examples, IdP setup)
+```
+
+**Risk Mitigation:**
+
+- ✅ Start only after data platform thesis proven
+- ✅ Dedicate separate team (doesn't block data platform work)
+- ✅ Reuse 70-80% of existing Clyra architecture
+- ✅ Can defer indefinitely if market doesn't validate
+
+---
+
+### Horizon 1C: Outcome Attribution (Primary Track)
+
+#### What Ships
+
+**Outcome Ledger (Append-Only)**
+
+- ✅ **Metric observations:** `metric_id`, `value`, `ts`, `window`, `source_system`, `confidence`, `actor_id`, `run_ref` (DEF/PEF)
+- ✅ **Ingestion sources:** dbt exposures/tests, warehouse queries (QUERY_HISTORY/Delta), reverse-ETL job outcomes
+- ✅ **Privacy-preserving:** Metadata-only, no raw data storage
+
+**Attribution Graph**
+
+- ✅ **Deterministic linkage:** Change → downstream assets → business metric (last-touch, time-decay v0)
+- ✅ **Attribution Certificates:** Signed certificates referencing DEF/PEF `run_ids`
+- ✅ **Lineage visualization:** CLI-based lineage display (`clyra verify --validate-lineage`)
+
+**Outcome Policies (Read-Only)**
+
+- ✅ **Policy YAML:** Allowed metrics, lookback windows, minimum confidence, exclusion periods
+- ✅ **Shadow billing simulation:** Generate "Shadow Billing Bundles" (JSON + PDF) with hypothetical rate cards
+- ✅ **Clear non-settlement labels:** All simulation outputs clearly marked as non-binding
+
+**Agent Hooks (Lightweight)**
+
+- ✅ **PEF runs:** Agents write outcomes (meetings booked, tickets resolved) to Outcome Ledger
+- ✅ **Attribution parity:** Agents receive Attribution Certificates alongside dbt runs
+- ✅ **Same evidence chain:** Agent outcomes use same DEF/PEF verification
+
+#### Success Criteria (1C)
+
+- ✅ 2+ customers use Attribution Certificates in QBRs
+- ✅ ≥1 public case study: "change → metric lift"
+- ✅ Shadow billing simulations run successfully for 3+ customers
+- ✅ Zero disputes on attribution methodology (deterministic + transparent)
+
+#### Repository Impact
+
+```
+/internal/ledger/ (append-only outcome storage)
+/internal/attr/ (attribution graph, certificate generation)
+/spec/pef/schemas/attribution_certificate.json
+/cmd/clyra/attest.go (extended for attribution)
+/docs/attribution.md (methodology, examples)
+```
+
+---
+
+## 3. Horizon 2 (Months 9-18) — Results-Based Billing
+
+### Decision Gate (Required Before Starting)
+
+- ✅ 5+ customers actively using Attribution Certificates
+- ✅ ≥3 customers request results-based billing capabilities
+- ✅ $1M+ ARR from Review/Gate
+- ✅ 2+ auditors acknowledge evidence format
+- ✅ Zero critical security vulnerabilities for 6+ months
+
+### Objective
+
+Convert attributable outcomes into invoices and (optionally) payouts—opt-in, enterprise-safe.
+
+### What Ships
+
+#### Pricing Policy Engine
+
+- ✅ **Policy YAML:** Mapping Attribution Certs → billable units (floors/caps, per-metric rates, risk weights)
+- ✅ **Versioning:** Policies are versioned & signed, immutable after application
+- ✅ **Customer overrides:** Manual adjustments with audit trail
+
+#### Invoice Generator & Exporters
+
+- ✅ **Billing Bundle format:** `invoice.json`, `line_items.json`, `policy.yaml`, `attribution_certs/*.json`, evidence refs
+- ✅ **Human-readable PDF:** Auditor-friendly invoice with evidence links
+- ✅ **Export targets:** JSON/CSV → ServiceNow/Jira tickets, NetSuite/Stripe adapters (later)
+
+#### Dispute Workflow (Lightweight)
+
+- ✅ **Mark under review:** Certificate status tracking with counter-evidence attachment
+- ✅ **Deterministic re-run:** Replay capability for disputed attribution
+- ✅ **Resolution tracking:** Time-to-resolve metrics, dispute rate monitoring
+
+#### Payout Rails v1 (Stablecoins)
+
+- ✅ **Coinbase integration:** Coinbase Accounts/Prime for USDC/EURC corridors
+- ✅ **Payout receipts:** Chained into DEF/PEF evidence trail
+- ✅ **AP exports:** QuickBooks/Xero CSV format
+- ✅ **KYC/AML:** Partner-provided compliance through Coinbase
+
+#### Agent Payouts (Optional)
+
+- ✅ **Agent registration:** `agent_id` + allowed metrics + rate limits
+- ✅ **Same Ledger/Graph:** Compute payouts via same attribution engine
+- ✅ **Safety guards:** Deterministic methods + confidence thresholds + human review gates
+
+### Monetization Model
+
+- **SaaS revenue:** Clyra Review ($25-60k) + Gate ($75-150k)
+- **Platform fee:** 0.2-0.5% on stablecoin payouts (pilot corridors only)
+- **Enterprise Plus:** Custom billing packs, dedicated success manager
+
+### Compliance & Safety
+
+- ✅ **Evidence traceability:** Every billed line traces to signed evidence (DEF/PEF + Attribution Cert)
+- ✅ **SOX/PCI overlays:** Extended to billing artifacts
+- ✅ **Auditor acceptance:** Billing Bundles accepted as compliant evidence
+- ✅ **Dispute resolution SLA:** <5 days time-to-resolve
+
+### Success Criteria (Horizon 2)
+
+- ✅ 1-2 customers piloting outcome-linked payouts or internal chargebacks
+- ✅ <2% monthly dispute rate
+- ✅ Time-to-resolve disputes ≤5 days
+- ✅ $50-100k revenue from platform fees (stablecoin corridors)
+- ✅ 1+ auditor accepts Billing Bundles as SOX/PCI evidence
+
+### Repository Impact
+
+```
+/internal/pricing/ (policy engine, rate calculation)
+/internal/billing/ (invoice generation, exports)
+/internal/payout/ (stablecoin rails, payout receipts)
+/cmd/clyra/billing.go (billing commands)
+/spec/pef/schemas/billing_bundle.json
+/docs/compliance/* (billing overlays)
+/docs/sop/disputes.md (dispute workflow)
+```
+
+---
+
+## 4. Horizon 3 (Months 18-36) — Ecosystem & Standards
+
+### Decision Gate
+
+- ✅ 5+ enterprise customers using Billing Bundles
+- ✅ 2-3 auditor acknowledgments (Big 4 firms)
+- ✅ $2M+ ARR with healthy unit economics
+- ✅ <1% dispute rate sustained over 6 months
+
+### Objective
+
+Make Clyra's artifacts the trusted backbone across finance & audit workflows.
+
+### What Ships
+
+#### Fiat Rails
+
+- ✅ **Partner integrations:** Stripe Treasury, Wise, bank APIs for USD/EUR/GBP
+- ✅ **Compliance:** Enhanced KYC/AML through banking partners
+- ✅ **Cross-border:** Multi-currency support with FX transparency
+
+#### Vertical Templates
+
+- ✅ **Industry packs:** Retail, FinServ, Healthcare, SaaS-specific outcome policies
+- ✅ **Compliance mappings:** Industry-specific regulatory frameworks
+- ✅ **Best practices:** Reference architectures, policy templates, auditor guides
+
+#### Auditor Partnerships
+
+- ✅ **Big 4 acknowledgment:** 2-3 firms accept Billing Bundles as compliant evidence
+- ✅ **Training programs:** Auditor certification on Clyra verification
+- ✅ **Hotline service:** Direct support for auditors during engagements
+
+#### Open Standards
+
+- ✅ **DEF/PEF spec publication:** Vendor-neutral format specification
+- ✅ **Attribution Certificate standard:** Open format for outcome attribution
+- ✅ **Third-party verifiers:** Community-built verifiers in additional languages
+- ✅ **SI playbooks:** System integrator implementation guides
+
+#### MCP Airlock Gate (If 1B Shipped)
+
+- ✅ **Full enforcement:** Allow/deny/HITL for MCP operations
+- ✅ **STS Token Exchange:** Complete OAuth 2.0 Token Exchange implementation
+- ✅ **Signed allowlist enforcement:** Only approved MCP servers can connect
+- ✅ **Advanced rate & arg constraints:** Per-tool rate limits, argument validation
+
+### Success Criteria (Horizon 3)
+
+- ✅ 5+ enterprise customers using Billing Bundles
+- ✅ 2-3 auditor acknowledgments from Big 4 firms
+- ✅ 3+ finance system adapters (NetSuite/Workday/SAP)
+- ✅ 10+ SI partners implementing Clyra
+- ✅ DEF/PEF referenced by competitors/standards bodies
+
+### Monetization Evolution
+
+- **Core SaaS:** Review ($25-60k) + Gate ($75-150k) + Enterprise Plus (custom)
+- **Platform fees:** 0.2-0.5% on payment flows (stablecoin + fiat)
+- **Partner revenue:** SI referral fees, auditor program fees
+
+---
+
+## 5. Horizon 4 (Years 3-7) — Settlement Layer Vision
+
+### Objective
+
+Become the neutral, evidence-anchored settlement fabric for automation and data outcomes—the "Visa for agents, data, and verified work."
+
+### What It Looks Like
+
+**Unified Rails**
+
+- ✅ **Multi-currency:** Stablecoin + fiat with unified API
+- ✅ **Attribution Certificates:** Contractable truth for all payouts
+- ✅ **Network effects:** Agents/vendors register rate cards, enterprises settle via Clyra
+
+**Trust Spine**
+
+- ✅ **Auditor-grade proof:** Every payment traces to signed evidence
+- ✅ **Dispute resolution:** <24hr resolution with deterministic replay
+- ✅ **Compliance by default:** SOX/PCI/HIPAA/EU AI Act built into flows
+
+**Network Economics**
+
+- ✅ **Platform fees:** 0.2-0.5% across payment flows
+- ✅ **Scale path:** At volume, creates $1B+ ARR opportunity
+- ✅ **Neutral positioning:** Independent from any cloud/AI vendor
+
+### Prerequisites (Achieved in Earlier Horizons)
+
+- ✅ Wide DEF/PEF adoption across data + AI industries
+- ✅ Auditor acceptance as standard evidence format
+- ✅ Connectors into AP/ERP systems of major enterprises
+- ✅ <1% dispute rate sustained over 24+ months
+- ✅ Regulatory clarity on stablecoin/crypto settlement
+
+---
+
+## 6. Engineering Discipline & Guardrails
+
+### Performance SLAs (Carried Forward All Horizons)
+
+- **Data Platform:** dbt hook <2s, warehouse queries <5s, activation proxy <15ms p95
+- **GenAI Security:** prompt analysis <100ms, external detectors <500ms, kill-switch <1s
+- **Universal:** Gateway ≤15ms p95, Recorder ≤20ms p95, evidence bundles <5s DEF/<3s PEF
+
+### Security Defaults (Non-Negotiable)
+
+- **Fail-closed:** All validators fail closed on errors
+- **Privacy-by-default:** No body storage unless explicitly enabled
+- **Cryptographic integrity:** HMAC, mTLS, Ed25519 signatures, cosign verification
+- **Supply chain:** SBOMs, Scorecard, OSV scanning, SLSA Level 3
+- **Continuous testing:** OWASP ZAP, k6 performance, golden vector validation
+
+### Adoption Sequencing (Locked)
+
+1. **Agentless first:** Webhooks/QUERY_HISTORY before proxies
+2. **Review first:** Listen-only before enforcement
+3. **Gate second:** Prove value before blocking operations
+4. **Attribution third:** Prove outcomes before billing
+5. **Billing last:** Simulate before real money movement
+
+### Repository Discipline
+
+- **Specs first:** `/spec/pef`, `/spec/pef/schemas/*` defined before implementation
+- **Verifiers independent:** Go/TS verifiers remain standalone, no core dependencies
+- **CODEOWNERS:** Sensitive paths (enforcement, billing) require senior review
+- **Golden vectors:** All format changes require test vector updates
+
+---
+
+## 7. GTM & Pricing Evolution
+
+### Horizon 0-1: Land & Expand (Data Platform)
+
+**Clyra Review** — $25-60k/year
+
+- Listen-only detection, DEF/PEF bundles, ServiceNow/Jira export, badge program
+- Hook: "Start safe with listen-only mode"
+
+**Clyra Gate** — $75-150k/year (+30-70% uplift)
+
+- Everything in Review + full enforcement, advanced GenAI security, kill-switch
+- Hook: "Graduate to full enforcement when ready"
+
+### Horizon 1B: Agent Security (If Activated)
+
+**Clyra Airlock Review (MCP)** — $20-50k/year
+
+- MCP monitoring, signed receipts, policy dry-run, ServiceNow/Jira export
+- Hook: "Extend data controls to AI agents"
+
+**Clyra Airlock Gate (MCP)** — $75-150k/year
+
+- Everything in Airlock Review + full enforcement, STS, signed allowlists
+- Hook: "Zero standing credentials for agents"
+
+### Horizon 2: Results-Based Billing
+
+**Clyra Attribution** — $10-25k/year add-on
+
+- Outcome ledger, attribution certificates, shadow billing simulation
+- Hook: "Prove ROI with outcome attribution"
+
+**Clyra Billing** — Platform fee + 0.2-0.5% on payment flows
+
+- Invoice generation, payout rails (stablecoin first), dispute resolution
+- Hook: "Pay based on verified results"
+
+### Horizon 3+: Enterprise & Ecosystem
+
+**Enterprise Plus** — Custom ($200k+/year)
+
+- Multi-framework compliance packs, dedicated success manager, custom detector development
+- Hook: "Enterprise-scale data governance + results-based billing"
+
+**Add-On Services:**
+
+- **Forensic Accelerator** ($5k): PCI/HIPAA attestation setup, 30 days consulting
+- **Auditor Confidence Pack** ($7.5k): Independent verification training, custom templates
+
+---
+
+## 8. Risk Management & Decision Framework
+
+### Technical Risks
+
+| Risk | Mitigation | Owner |
+|------|-----------|-------|
+| Data platform integration complexity | Phased rollout, design partners, comprehensive docs | Product |
+| GenAI false positives | Shadow mode defaults, tunable thresholds | Engineering |
+| Performance impact | Strict SLA enforcement, continuous monitoring | Platform |
+| Attribution methodology disputes | Deterministic algorithms, transparent methodology, customer overrides | Data Science |
+| MCP spec evolves rapidly | Pluggable proxy, versioned receipts, feature flags | Engineering (if 1B active) |
+
+### Market Risks
+
+| Risk | Mitigation | Owner |
+|------|-----------|-------|
+| Message confusion | Lead with "Data Change Control & Attestation" | Marketing |
+| dbt/Snowflake build competing features | Partner positioning, independent verifier moat | BD/Product |
+| Enterprise integration friction | ServiceNow/Jira bridges, listen-only start, badge social proof | Sales/Eng |
+| Agent security timing wrong | Horizon 1B decision gate with clear activation criteria | Leadership |
+| Payment vision creates category confusion | Always lead with compliance value, position billing as opt-in | CEO/Marketing |
+
+### Operational Risks
+
+| Risk | Mitigation | Owner |
+|------|-----------|-------|
+| Compliance burden | Automated validation, comprehensive docs | Compliance |
+| Security vulnerabilities | Continuous scanning, rapid response | Security |
+| Money movement risk (H2) | Simulate first, stablecoin via custody, phased corridors | CFO/Legal |
+| Execution bandwidth | Clear decision gates, dedicated teams for parallel tracks | CEO/CTO |
+
+### Decision Framework for MCP Airlock (Horizon 1B)
+
+**Activate if ANY of these conditions met:**
+
+1. ≥2 existing customers explicitly request MCP support
+2. MCP GitHub stars >10k AND ≥3 major platforms integrated
+3. ≥3 documented security incidents create CISO demand
+4. Strategic category ownership opportunity (first mover advantage)
+5. Competitive threat emerges (observability vendors adding agent security)
+
+**Requirements before activation:**
+
+- ✅ Horizon 0 success criteria fully met
+- ✅ $300k+ ARR from data platform
+- ✅ Dedicated team available (2-3 engineers for 12 weeks)
+- ✅ Design partners committed to pilot
+
+**Defer if:**
+
+- ❌ Data platform thesis not yet proven
+- ❌ Execution bandwidth constrained
+- ❌ Market signals unclear
+- ❌ Higher ROI opportunities exist
+
+---
+
+## 9. Success Metrics by Horizon
+
+### Horizon 0 (Months 0-3)
+
+- **Technical:** First attested ticket ≤2 weeks, SLAs met, cross-verifier consistency
+- **Business:** 3 design partners, 1 paid pilot, 100+ GitHub stars
+- **Strategic:** ServiceNow/Jira integration proven, 1+ auditor acknowledgment
+
+### Horizon 1A (Months 3-9) — Enforcement
+
+- **Technical:** <10ms enforcement overhead, 100% kill-switch drill success
+- **Business:** 10+ Review customers, 3+ Gate conversions, ≥30% conversion rate
+- **Revenue:** $500k+ ARR (70% Review, 30% Gate)
+
+### Horizon 1B (Months 3-9) — MCP Airlock (If Activated)
+
+- **Technical:** TTFSC <60 min, 0 standing credentials, ≥90% receipt coverage
+- **Business:** 2+ design partners, real workflows in production
+- **Revenue:** $100-200k ARR from MCP deployments
+
+### Horizon 1C (Months 3-9) — Attribution
+
+- **Technical:** Deterministic attribution, zero methodology disputes
+- **Business:** 2+ customers using Attribution Certs in QBRs, ≥1 public case study
+- **Strategic:** Shadow billing simulation proven
+
+### Horizon 2 (Months 9-18)
+
+- **Technical:** <5 day dispute resolution, evidence traceability 100%
+- **Business:** 1-2 customers piloting payouts, <2% dispute rate
+- **Revenue:** $50-100k from platform fees (stablecoin)
+
+### Horizon 3 (Months 18-36)
+
+- **Technical:** Fiat rails operational, <1% dispute rate sustained
+- **Business:** 5+ enterprises on Billing Bundles, 2-3 Big 4 acknowledgments
+- **Revenue:** $2M+ ARR, healthy unit economics
+
+### Horizon 4 (Years 3-7)
+
+- **Strategic:** Industry standard for data/agent evidence and settlement
+- **Network:** Wide DEF/PEF adoption, SI ecosystem, auditor acceptance
+- **Revenue:** $1B+ ARR path via platform fees at scale
+
+---
+
+## 10. What's Not Changing (Core Commitments)
+
+1. **Open source foundation:** Recorder, diff/replay, proxy remain OSS
+2. **Progressive adoption:** Review → Gate sequencing, enforcement off by default
+3. **Evidence-first:** Signed, portable proof before any business logic
+4. **Independent verification:** Go/TS verifiers work offline, no vendor lock-in
+5. **Agent leverage:** Same receipts/policies for data and agents—no separate stack
+6. **Privacy-by-design:** Metadata-only, explicit opt-in for bodies, redaction mandatory
+
+---
+
+## 11. What's Newly Emphasized (Strategic Evolution)
+
+1. **Payout metadata from Day 1:** Receipt fields for attribution, no money movement until H2
+2. **Attribution Certificates before Billing:** Prove outcomes before accepting payments
+3. **Stablecoin before fiat:** Small corridors via trusted custody, phased rollout
+4. **MCP Airlock optionality:** Strategic hedge with clear decision gates, can defer indefinitely
+5. **Results-based billing vision:** Clear path from compliance to payment platform
+6. **Settlement layer ambition:** "Visa for verified work" as North Star, phased execution
+
+---
+
+## 12. Bottom Line: Strategic Coherence
+
+**Primary Bet:** Data platform evidence → enforcement → attribution → billing
+**Strategic Option:** MCP Airlock when market signals confirm timing
+**North Star:** Trusted settlement fabric for verified results
+**Execution Discipline:** Prove each layer before expanding surface area
+
+**The Elevator Pitch:**
+
+> "Clyra makes sure every data or agent change is safe and audit-ready today, and is growing into the trusted system that lets companies pay people, vendors, and AI agents based on verified results tomorrow."
+
+**Why This Works:**
+
+- **Clear primary wedge:** Data platform (dbt, warehouses) with proven budget
+- **Agent optionality:** Ready when market is, not forced prematurely
+- **Compelling vision:** Payment based on verified results = simple, human concept
+- **Disciplined execution:** Decision gates prevent premature expansion
+- **Architectural leverage:** 70-80% code reuse across data/agent/billing
+
+**The Strategic Bet:**
+
+Nail data platform evidence (H0-1A), build attribution proof (H1C), enable results-based billing (H2), and maintain MCP Airlock as strategic hedge (H1B) that activates when—and only when—market timing is right. Win the long game by proving each layer before expanding.
+
+---
+
+*End of Clyra Strategic Roadmap v2.0*
