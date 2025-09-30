@@ -1,6 +1,48 @@
-Product (codename): Airlock for MCP
+# Clyra MCP Airlock - Technical Specification
 
-One-liner: An MCP-native security & connectivity gateway that gives agents just-in-time identity, policy-guarded access, and verifiable audit receipts—so they can cross org boundaries and “land safely,” not just connect. (MCP is the open protocol many apps now use to attach agents to tools/data.  ￼)
+**Product Name:** Clyra Airlock (MCP Edition)
+**Status:** Ready to Execute (Conditional - See Decision Framework)
+**Last Updated:** 2025-01-31
+
+---
+
+## Decision Framework for Activation
+
+**⚠️ This spec is ready to execute when strategic conditions are met.**
+
+See [strategic_roadmap.md - Horizon 1B Decision Gate](strategic_roadmap.md#horizon-1b-agent-security-via-mcp-airlock-parallel-track---conditional) for full strategic context.
+
+### Activate if ANY Condition Met:
+
+1. ≥2 existing customers explicitly request MCP support
+2. MCP GitHub stars >10k AND ≥3 major platforms integrated
+3. ≥3 documented security incidents create CISO demand
+4. Strategic category ownership opportunity (first mover advantage)
+5. Competitive threat emerges (observability vendors adding agent security)
+
+### Prerequisites Before Starting:
+
+- ✅ Horizon 0 success criteria fully met ($300k+ ARR from data platform)
+- ✅ Data platform thesis proven (3+ paying customers)
+- ✅ Dedicated team available (2-3 engineers for 12 weeks)
+- ✅ Design partners committed to pilot
+
+### Defer If:
+
+- ❌ Data platform thesis not yet proven
+- ❌ Execution bandwidth constrained
+- ❌ Market signals unclear
+- ❌ Higher ROI opportunities exist
+
+**Current Status:** Schema-only preparation complete (PEF v0 MCP extension in Horizon 0). Full implementation ready when conditions met.
+
+---
+
+## Product Overview
+
+**One-liner:** An MCP-native security & connectivity gateway that gives agents just-in-time identity, policy-guarded access, and verifiable audit receipts—so they can cross org boundaries and "land safely," not just connect.
+
+**The Model Context Protocol (MCP)** is the open protocol many apps now use to attach agents to tools/data—becoming the "USB-C for agents ↔️ tools."
 
 ⸻
 

@@ -655,6 +655,34 @@ Become the neutral, evidence-anchored settlement fabric for automation and data 
 - **Network:** Wide DEF/PEF adoption, SI ecosystem, auditor acceptance
 - **Revenue:** $1B+ ARR path via platform fees at scale
 
+### Timeline Realism & Market Evolution
+
+#### Years 0-2: Evidence & Enforcement Revenue
+- **Focus:** Sell evidence/enforcement → win SOX/dbt/Snowflake budgets
+- **Revenue:** SaaS subscriptions (Review + Gate)
+- **Target:** $300k-$1M ARR
+
+#### Years 2-4: Outcome Attribution Standard
+- **Focus:** Add outcome attribution → become ROI measurement standard
+- **Revenue:** SaaS + Attribution add-on
+- **Target:** $1M-$5M ARR
+
+#### Years 4-6: Settlement Fabric Emergence
+- **Scope:** Enterprise settlement between known parties (vendors, contractors, agents, internal chargebacks)
+- **Position:** Middleware layer exporting to NetSuite/SAP/QuickBooks/Coinbase
+- **Revenue Model:** Transaction fees (0.25-0.5%) become viable as trust is proven
+- **Trust Level:** Customers trust Clyra within their own workflows and with close partners
+- **Market Analogy:** Like Plaid or Bill.com—facilitate transactions, not yet universal network
+- **Target:** $5M-$20M ARR
+
+#### Years 6-10: Visa-like Neutral Layer
+- **Scope:** DEF/PEF + Attribution Certs become multi-vendor, multi-platform standard
+- **Position:** Not just middleware—the clearinghouse everyone plugs into for agent/data-driven outcomes
+- **Revenue Model:** Transaction fees at scale (like Visa/MasterCard interchange); fee is unavoidable because Clyra is the neutral arbiter of attribution and proof
+- **Trust Level:** Market-wide—enterprises, auditors, regulators, and even competitors treat Clyra receipts and certificates as the gold standard
+- **Market Analogy:** Like Visa or SWIFT—not just connecting parties, but enforcing the rules of trust across the network
+- **Target:** $100M-$1B+ ARR potential
+
 ---
 
 ## 10. What's Not Changing (Core Commitments)

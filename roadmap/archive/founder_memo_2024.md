@@ -1,6 +1,12 @@
 Founder Memo: Clyra Roadmap & Strategic Vision
 
-Date: September 2025
+**HISTORICAL DOCUMENT - September 2024**
+
+**Note:** This document is preserved for historical reference. For current strategy, see [../README.md](../README.md) and [../strategic_roadmap.md](../strategic_roadmap.md).
+
+---
+
+Date: September 2024
 From: David
 
 ⸻
