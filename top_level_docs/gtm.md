@@ -1,671 +1,969 @@
-Clyra v4.0 Go-to-Market Strategy
+# Clyra v4.0 Go-to-Market Strategy
 
-  "Data Change Control & Attestation for Modern Pipelines"
+**"Data Change Control & Attestation for Modern Pipelines"**
 
-  ---
-  Executive Summary
+---
 
-  The Tension: Your data pipelines and dbt models are changing production schemas. Your observability tools show what happened. Your auditors ask: "Can you prove this change was approved and safe?" And you realize—logs aren't evidence.
+## Executive Summary
 
-  The Purple Cow: Clyra is the only platform that provides data change control with warehouse-native anchoring (Snowflake QUERY_HISTORY, Delta commits, WAL LSN), deterministic replay, and produces signed DEF/PEF bundles that auditors can verify independently. In 10 minutes, go from dbt hook to SOX attestation.
+**The Problem:** Your dbt models change production schemas every day. Your controller asks: "Show me proof these changes follow SOX change control." You have Slack approvals, Jira tickets, dbt Cloud logs, and Snowflake QUERY_HISTORY—but nothing connects them. 6-8 weeks to reconstruct the evidence trail.
 
-  The Mission: Become the data change control standard for modern pipelines within 18 months. When enterprises ask "How do we prove our data changes are compliant?" the answer is always "Clyra."
+**The Solution:** Clyra provides data change control with warehouse-native anchoring (Snowflake QUERY_HISTORY, Databricks Delta commits), ServiceNow/Jira integration, and automated SOX attestations. From dbt hook to attested change ticket in minutes.
 
-  ---
+**The Mission:** Become the data change control standard for modern pipelines within 18 months. When data teams ask "How do we prove our changes are SOX compliant?" the answer is "Clyra."
 
-  1. The Great Data Governance Gap (Tension Marketing)
+---
 
-  The Status Quo Delusion
+## 1. The Market Entry Problem
 
-  "We're covered—we have dbt docs, Snowflake logs, and Monte Carlo alerts."
+### The Scattered Evidence Reality
 
-  The Hidden Reality
+**What Data Teams Say:**
+"We're covered—we have dbt docs, GitHub PRs, and Snowflake logs."
 
-  Observability shows symptoms. Auditors need evidence.
+**What Auditors Need:**
+When your dbt model changes the revenue calculation, auditors ask:
 
-  When your dbt model corrupts a revenue metric, observability tells you:
+- ✓ "Show me the change ticket with approval proof"
+- ✓ "What exactly changed in the schema?"
+- ✓ "Link the Jira ticket to the dbt run ID and QUERY_HISTORY"
+- ✓ "Prove the approved change matches what deployed"
 
-- ❌ "Schema test failed at 2:47 PM"
-- ❌ "Row count changed unexpectedly"
-- ❌ "Downstream dashboards show anomalies"
+**The 6-8 Week Problem:**
 
-  When auditors investigate, they need:
+- Week 1-2: Identify all dbt model changes that quarter
+- Week 3-4: Find Slack/GitHub approvals for each change
+- Week 5: Match Jira tickets to dbt runs manually
+- Week 6-8: Create evidence spreadsheet for auditor
+- Result: Controller asks, "This can't be our process"
 
-- ✅ "Exactly what changed in the data model"
-- ✅ "Cryptographic proof the change was approved"
-- ✅ "Deterministic replay of the transformation"
-- ✅ "Signed attestation mapping to SOX ITGC controls"
+---
 
-  The Inconvenient Truth
+## 2. Strategic Positioning: Data-Led, Agent-Ready
 
-  95% of data platform teams that reach production can't answer three questions:
+### The Market Entry Strategy
 
-  1. What exactly changed in the schema/metric?
-  2. Can you prove it was approved?
-  3. Can you replay the transformation deterministically?
+**Lead with data platform** (budget exists today):
 
-  Result: Auditors block data initiatives. SOX compliance fails. Trust erodes.
+- dbt + Snowflake/Databricks governance (immediate pain)
+- ServiceNow/Jira integration (existing workflow)
+- SOX ITGC compliance (concrete requirement)
+- Activation controls (Hightouch/Census/RudderStack)
 
-  ---
+**Expand to AI agents** (same architecture, tomorrow):
 
-  2. Purple Cow Positioning: "The Only"
+- Same control patterns (approval + evidence + attestation)
+- Same ServiceNow/Jira integration
+- Same compliance frameworks
+- Data teams already own the budget category
 
-  What Makes Clyra Impossible to Ignore
+### The Beachhead Market
 
-  The Only Platform with Data-First, Agent-Ready Architecture
+**Target:** 200-2K employee public/pre-IPO companies
 
-- Status Quo: Data governance and AI governance as separate problems
-- Clyra: One control point protecting data pipelines today, AI agents tomorrow
+- **Pain:** SOX pressure on data platform operations
+- **Stack:** dbt + Snowflake/Databricks + ServiceNow/Jira
+- **Budget:** Existing "data governance" line item ($50-150K)
+- **Timeline:** 60-90 days from pilot to production
 
-  The Only Solution with Warehouse-Native Anchoring
+### Two-SKU Progressive Adoption
 
-- Status Quo: Logs with timestamps that can drift
-- Clyra: Evidence anchored to Snowflake QUERY_HISTORY, Delta commits, WAL LSN—the immutable truth of what actually changed
+**Clyra Review (Listen-Only → Detection)**
 
-  The Only Platform with Two-SKU Progressive Adoption
+- Webhook listening (dbt Cloud, warehouse operations)
+- Evidence bundle generation (no enforcement)
+- ServiceNow/Jira ticket creation (attested proof)
+- Badge issuance ("Clyra Certified - SOX Compliant")
+- $20-50K/year
 
-- Status Quo: "All-or-nothing" enforcement platforms
-- Clyra: Start with Review (listen-only) → Graduate to Gate (full enforcement)
-
-  The Only System with Independent DEF/PEF Verifiers
-
-- Status Quo: "Trust our vendor dashboard"
-- Clyra: Go and TypeScript verifiers you run offline, with golden test vectors—verify without trusting us
-
-  The Only Platform Embedding Governance in Every Change
-
-- Status Quo: Compliance is documentation theater
-- Clyra: Every dbt run carries governance DNA—Reliability · Transparency · Accuracy · Oversight
-
-  The Only Tool Creating SOX Attestations from dbt Runs
-
-- Status Quo: Months of SOX ITGC evidence gathering
-- Clyra: dbt hook → DEF bundle → clyra attest --framework sox → signed attestation, ready for auditor review
-
-  ---
-
-  3. Tension-Based Messaging Architecture
-
-  Level 1: The Uncomfortable Truth (Hook)
-
-  "Your dbt models just changed the revenue calculation. Can you prove the change was approved and safe?"
-
-  Level 2: The Hidden Gap (Agitate)
-
-  "dbt logs show the run. Tests show the results. But SOX auditors need forensic evidence. Can you replay yesterday's schema migration deterministically? Can you prove no unapproved changes occurred? Your observability tools can't."
-
-  Level 3: The Data Governance Bridge (Insight)
-
-  "The only source of truth is the warehouse anchor—QUERY_HISTORY, Delta commits, WAL LSN. Anchor your evidence there. Capture exact schema changes. Replay in isolation. Sign the attestation."
-
-  Level 4: The 10-Minute Proof (Resolve)
-
-  "clyra dbt init → dbt run with hooks → DEF bundle → clyra verify → clyra replay → clyra attest --framework sox. From dbt project to signed SOX attestation in 10 minutes."
-
-  The Purple Cow Tagline
-
-  "Evidence, not just alerts."
-
-  ---
-
-  4. Target Personas (Tension-Aware)
-
-  Primary Champion: The Data Platform Engineer
-
-- Current Belief: "Our dbt tests and Snowflake logs show everything"
-- Hidden Fear: "What if SOX audit asks for proof and I have logs, not evidence?"
-- Tension Point: "Schema changes without approval trail"
-- Purple Cow Hook: "Watch this—deterministic replay of last Tuesday's dbt run with signed approval"
-
-  Validator: The SOX-Weary Controller
-
-- Current Belief: "We document our data change control processes"
-- Hidden Fear: "SOX auditor asks for proof and we have tickets, not evidence"
-- Tension Point: "Change control documentation vs. forensic truth"
-- Purple Cow Hook: "Here's a signed DEF bundle your auditor can verify independently"
-
-  Economic Buyer: The Head of Data Platform
-
-- Current Belief: "Our data pipelines are technically sound"
-- Hidden Fear: "We built modern data stack but can't prove SOX compliance"
-- Tension Point: "Data platform velocity vs. compliance friction"
-- Purple Cow Hook: "Ship dbt models 3x faster with built-in SOX attestation"
-
-  Technical Evaluator: The Warehouse-Savvy Data Engineer
-
-- Current Belief: "I understand my Snowflake/Databricks warehouse better than any tool"
-- Hidden Fear: "dbt models are changing schemas and I have no forensic trail"
-- Tension Point: "Data integrity vs. pipeline velocity"
-- Purple Cow Hook: "Finally—evidence anchored to QUERY_HISTORY and Delta commits, like you always wanted"
-
-  ---
-
-  5. Purple Cow Feature Architecture
-
-  The Enforcement Stack (Unique)
-
-  🛡️  Gateway: SchemaLock + AI Firewall
-  ├─ OWASP-tagged receipts with threat_class/mitre_id
-  ├─ Idempotency keys (HMAC'd fingerprints, TTL-bound)
-  ├─ HITL Approval Certificates (RFC 8785 payload-bound)
-  ├─ Velocity guards (sliding windows, burst protection)
-  ├─ Tenant/actor fences (cross-tenant write prevention)
-  └─ SQL guard (advisory blocks on mass UPDATE/DELETE)
-
-  📊  Recorder: Flight Data Recorder
-  ├─ WAL LSN-anchored snapshots (metadata only, no PITR)
-  ├─ REPEATABLE READ consistency guarantees
-  ├─ Deterministic diffs with stable ordering
-  ├─ Hash chain integrity (HMAC validation)
-  └─ ECS/OCSF NDJSON (SIEM-native ingestion)
-
-  🎯  Replay Engine: Forensic Truth
-  ├─ Offline replay in scratch schemas (clyra_replay_<run_id>)
-  ├─ Network deny-by-default (RFC1918 blocked)
-  ├─ Signed Replay Certificates (success|partial|failed)
-  └─ Deterministic reproduction (<2× baseline performance)
-
-  📦  Evidence Bundles: PEF v0
-  ├─ Canonical JSON (Merkle-rooted, tamper-evident)
-  ├─ Ed25519 signatures (ECDSA/RSA optional)
-  ├─ Governance pillars embedded (Reliability·Transparency·Accuracy·Oversight)
-  ├─ Independent Go/TS verifiers
-  └─ 10-minute attestation pipeline (PCI/HIPAA pass/fail; EU AI Act/NIST overlays)
-
-  The 10-Minute Data Platform Experience
-
-  clyra dbt init my-project               # dbt project with Clyra hooks
-  make quickstart-data                    # Full stack up (Gateway+Recorder+Snowflake simulator)
-  clyra demo data --platform snowflake   # Generate DEF bundles from warehouse operations
-  clyra verify evidence.zip --explain     # Independent verification with lineage
-  clyra replay --platform snowflake      # Deterministic data-aware reproduction
-  clyra attest --framework sox           # Signed SOX ITGC attestation
-  clyra report --daily-review --include-data-changes # Enhanced daily review
-
-  No other platform delivers signed SOX attestation from dbt runs in 10 minutes.
-
-  ---
-
-  6. Go-to-Market Motion: The Forensic Wedge
-
-  Phase 1: The "Show Me the Evidence" Campaign (Days 1-90)
-
-  Objective
-
-  1,000 GitHub stars, 100 forensic replays executed, 10 signed attestations
-
-  Purple Cow Strategy
-
-  Lead with the impossible demo:
-
-- Inject deliberate corruption into test database
-- Show Gateway blocking malformed output with OWASP tag
-- Capture WAL LSN-anchored snapshot
-- Demonstrate deterministic replay in scratch schema
-- Generate signed evidence bundle
-- Verify independently with Go/TS verifiers
-- Create PCI attestation in under 10 minutes
-
-  Tension Messaging
-
-  "Your automation just broke. Show me the forensic evidence. Can you replay it exactly? Can you
-  prove what changed? Clock starts now."
-
-  Phase 2: The Auditor Validation (Days 91-180)
-
-  Objective
-
-  3 QSA endorsements, 2 Big 4 SI partnerships, published security whitepaper
-
-  Purple Cow Strategy
-
-  Make auditors the heroes:
-
-- QSAs can verify bundles without trusting Clyra
-- Independent verifiers run offline
-- Signed attestations map directly to compliance controls
-- Daily review automation eliminates manual log reviews
-
-  Tension Messaging
-
-  "Your auditor just asked: 'How do you prove this AI system is compliant?' Show them a signed
-  bundle they can verify themselves."
-
-  Phase 3: The Industry Standard (Days 181-365)
-
-  Objective
-
-  $500K ARR, 50 production Postgres clusters, Series A ready
-
-  Purple Cow Strategy
-
-  Become the forensic standard:
-
-- Every SI includes Clyra in automation RFPs
-- "PEF-Verified" becomes the compliance badge
-- GitHub Actions verify evidence bundles automatically
-- Industry analysts cite WAL LSN anchoring as best practice
-
-  ---
-
-  7. Channel Strategy: Tension Distribution
-
-  Tier 1: High-Tension Channels (80% effort)
-
-  GitHub: "The Evidence is Here"
-
-- Hook: README starts with "Can you prove what your automation did?"
-- Demo: Live corruption injection and replay
-- Social Proof: Badge showing "X bundles independently verified"
-- CTA: Fork hello-bundle repo, run verifier in 2 minutes
-
-  Hacker News: "Show HN: Prove Your AI Agents Don't Lie"
-
-- Title: The forensic challenge—can you replay last Tuesday's automation?
-- Demo: Live evidence bundle verification in comments
-- Tension: "Observability vs. Evidence—There's a Difference"
-- Founder online 12 hours answering every technical question
-
-  PostgresWeekly: "WAL LSN: Your Forensic Anchor"
-
-- Technical Article: "Why WAL LSN is the Only Truth for Automation Audit"
-- Code Examples: Snapshot anchoring, replay isolation
-- Community: Postgres DBA audience who understand LSN value
-
-  Tier 2: Trust-Building Channels (15% effort)
-
-  Reddit: Value-First Technical Content
-
-- r/PostgreSQL: "How WAL LSN Changed Our Incident Response"
-- r/devops: "Deterministic Replay Reduced MTTR by 70%"
-- r/mlops: "Why AI Observability Isn't AI Evidence"
-- 10:1 help-to-promote ratio
-
-  Security/Compliance Communities
-
-- PCI QSA Forums: Share attestation examples
-- HIPAA Compliance Groups: Daily review automation demos
-- InfoSec Twitter: Receipt examples with OWASP tags
-
-  Tier 3: Amplification (5% effort)
-
-  Conference Speaking: "The Evidence Revolution"
-
-- KubeCon: "Forensic Kubernetes: When Pods Need Proof"
-- SREcon: "Beyond Observability: Deterministic Incident Replay"
-- PGConf: "WAL LSN as Forensic Truth for Automation"
-
-  ---
-
-  8. Purple Cow Content Strategy
-
-  Signature Content Series: "Evidence vs. Observability"
-
-  The Forensic Friday Show (Bi-weekly)
-
-- Live incident recreation and replay
-- Real corruption injection and prevention
-- WAL LSN anchoring demonstration
-- Independent bundle verification
-- Q&A with platform engineers
-
-  Technical Blog Series: "The Evidence Advantage"
-
-  1. "Why Observability Lies (And WAL LSN Doesn't)"
-  2. "The Forensic Gap: What Auditors Really Need"
-  3. "Deterministic Replay: Beyond 'Works on My Machine'"
-  4. "HITL Approval Certificates: Trust Through Crypto"
-  5. "10 Minutes to PCI Compliance: The Attestation Revolution"
-
-  Case Study Template: "The Proof Pipeline"
-
-- The Incident: What went wrong
-- The Evidence Gap: What logs couldn't prove
-- The Clyra Solution: WAL LSN anchoring and replay
-- The Attestation: Signed proof for auditors
-- The Result: Quantified impact (MTTR, compliance time)
-
-  ---
-
-  9. Competitive Purple Cow Positioning
-
-  vs. Observability Vendors (Datadog, New Relic)
-
-  Their Story: "See what happened with dashboards and alerts"Our Story: "Prove what happened with
-  forensic evidence and replay"
-  The Tension: "Visibility isn't verification. Alerts aren't attestations."
-
-  vs. Database Audit Tools (AWS RDS Logs, pgAudit)
-
-  Their Story: "Log all database activities"
-  Our Story: "Create tamper-evident bundles anchored to WAL LSN"The Tension: "Logs can be tampered
-  with. LSN-anchored evidence cannot."
-
-  vs. Compliance Platforms (Vanta, Secureframe)
-
-  Their Story: "Automate compliance documentation"
-  Our Story: "Generate forensic evidence that satisfies auditors"
-  The Tension: "Documentation isn't proof. Checkboxes aren't evidence."
-
-  vs. AI Safety Tools (Anthropic Claude, OpenAI Safety)
-
-  Their Story: "Make AI outputs safer"
-  Our Story: "Prove AI outputs are safe with cryptographic evidence"The Tension: "Safety promises
-  vs. safety proof"
-
-  ---
-
-  10. Pricing: The Purple Cow Premium
-
-  Clyra Review ($20-50K/year)
-
-- Listen-only detection and attestation
-- dbt hook integration
-- Daily review automation
-- ServiceNow/Jira export
-- Badge program access
-- Hook: "Start safe with listen-only mode"
-
-  Clyra Gate ($75-150K/year)
+**Clyra Gate (Full Enforcement)**
 
 - Everything in Review +
-- Full enforcement primitives
-- Policy gates and kill-switches
-- BEC-grade approval certs
-- Advanced GenAI security
-- Hook: "Graduate to full enforcement when ready"
+- Policy enforcement (approval requirements)
+- SQL safety guards (mass UPDATE/DELETE blocks)
+- Kill-switch capabilities
+- Advanced compliance (PCI/HIPAA overlays)
+- $75-150K/year
 
-  Enterprise Plus (Custom)
+---
+
+## 3. Problem-First Messaging Architecture
+
+### Level 1: The Concrete Pain (Hook)
+
+"Quarter-end audit. 9 AM Monday. Auditor asks: 'Show me proof your dbt changes follow SOX change control.' You have logs. You don't have evidence."
+
+### Level 2: The Scattered Evidence Gap (Agitate)
+
+"Approval in Slack (which channel?). Jira ticket exists (doesn't reference dbt run ID). dbt Cloud shows success. Snowflake QUERY_HISTORY has the queries. NOTHING links them together. 6 weeks to create the spreadsheet."
+
+### Level 3: The Integration Bridge (Insight)
+
+"You need one workflow: dbt run → evidence bundle → ServiceNow/Jira ticket with ALL the proof (dbt run ID + QUERY_HISTORY reference + approval record + schema diff). Auditors review ONE ticket instead of 4 systems."
+
+### Level 4: The 3-Hour Implementation (Resolve)
+
+"clyra dbt init → dbt hooks installed → run dbt → evidence attached to ServiceNow ticket → SOX compliance in place. From scattered evidence to attested change tickets in 3 hours."
+
+### The Tagline
+
+**"6-8 weeks → 3-5 days"** (audit prep time reduction)
+
+---
+
+## 4. Target Personas (Problem-Aware)
+
+### Primary Champion: Data Platform Engineer
+
+- **Current State:** "Our dbt PRs are reviewed, tests pass, we're good"
+- **Hidden Pain:** "Can't prove to auditors that changes were approved"
+- **Pain Point:** "6 weeks of manual evidence collection every quarter"
+- **Hook:** "Watch—dbt run → attested ServiceNow ticket automatically"
+
+### Validator: SOX-Weary Controller
+
+- **Current State:** "Data team says they have controls"
+- **Hidden Pain:** "Auditor asks for proof, we show Slack screenshots"
+- **Pain Point:** "Evidence scattered across 4 systems, manual correlation"
+- **Hook:** "One change ticket with ALL the proof auditors need"
+
+### Economic Buyer: Head of Data Platform
+
+- **Current State:** "We built modern data stack, governance is manual"
+- **Hidden Pain:** "SOX audit prep delays pipeline velocity"
+- **Pain Point:** "Can't ship fast without compliance friction"
+- **Hook:** "Ship dbt models faster with automated SOX compliance"
+
+### Technical Evaluator: Data/Analytics Engineer
+
+- **Current State:** "I know my dbt models and warehouse"
+- **Hidden Pain:** "No forensic trail for schema changes"
+- **Pain Point:** "Manual change tracking doesn't scale"
+- **Hook:** "Evidence anchored to QUERY_HISTORY and Delta commits—native warehouse integration"
+
+---
+
+## 5. Product Architecture (Problem-Led)
+
+### The Data Platform Core
+
+**dbt Integration**
+
+- on_run_start/end hooks (emit evidence bundles)
+- SQL safety macros (advisory guards on mass operations)
+- CI gates (block policy violations before merge)
+- Semantic delta tracking (before/after schema comparison)
+
+**Warehouse Anchors**
+
+- Snowflake: QUERY_HISTORY correlation + session tags
+- Databricks: Delta commits + Unity Catalog lineage
+- Postgres: WAL LSN anchoring (dev/pilot environments)
+
+**ServiceNow/Jira Bridge**
+
+- Automated change ticket creation
+- Evidence bundle attachment (dbt run ID + QUERY_HISTORY + approvals)
+- Approval workflow integration
+- Daily review helper (failed changes, anomalies)
+
+**Evidence Format (DEF v0)**
+
+- Data Evidence Format (vendor-neutral JSON)
+- Warehouse-native anchoring
+- Independent verification (Go/TS verifiers)
+- SOX ITGC attestation generation
+
+### The Universal Foundation (Strategic)
+
+**Gateway (SchemaLock + Data Firewall)**
+
+- JSON schema validation
+- Data-aware policies
+- BEC-grade approval certificates
+- GenAI threat detection (OWASP LLM)
+
+**Recorder (Flight Data Recorder)**
+
+- Metadata-only snapshots
+- Deterministic diffs
+- Warehouse anchoring
+- Enhanced replay capability
+
+**Compliance Engine**
+
+- Multi-framework attestations (SOX/PCI/HIPAA/EU AI Act)
+- Policy-as-code automation
+- Daily review generation
+- Badge issuance
+
+### The 10-Minute Data Platform Experience
+
+```bash
+clyra dbt init my-project               # dbt project with Clyra hooks
+make quickstart-data                     # Local stack (Gateway+Recorder+Snowflake)
+clyra demo data --platform snowflake    # Generate DEF bundles
+clyra warehouse doctor --platform snowflake  # Validate integration
+clyra verify evidence.zip --validate-lineage  # Independent verification
+clyra attest evidence.zip --framework sox     # Signed SOX attestation
+clyra report --daily-review --include-data-changes  # Enhanced review
+```
+
+No other platform delivers SOX-attested data change control from dbt to ServiceNow in 10 minutes.
+
+---
+
+## 6. Go-to-Market Motion: The Data Platform Wedge
+
+### Phase 1: The OSS Credibility Campaign (Days 1-90)
+
+**Objective:** 1,000 GitHub stars, 100 dbt projects using hooks, 10 ServiceNow integrations
+
+**OSS Wedge Strategy:**
+
+Release 4 standalone, immediately useful tools (NO Clyra branding):
+
+1. **ServiceNow/Jira Bridge** (Week 2): Bash scripts to attach dbt evidence to tickets
+2. **Evidence Bundle Spec** (Week 3): Vendor-neutral format with verifier stub
+3. **dbt SOX Hooks** (Week 5): on_run_end macros that emit SOX-ready evidence
+4. **SOX Data Checklist** (Week 8): Complete implementation roadmap
+
+**Problem-First Messaging:**
+"6-8 weeks audit prep → 3-5 days. Here's how data teams are solving scattered evidence."
+
+**Success Metrics:**
+
+- 200+ repos using evidence bundle format
+- 50+ dbt projects with SOX hooks installed
+- 10+ teams using ServiceNow/Jira bridge in production
+- Community asks: "Who built these tools?" → Week 9: "Clyra"
+
+### Phase 2: The Badge & Integration Network (Days 91-180)
+
+**Objective:** 50 "Clyra Certified" badges live, 2 Big 4 audit firm acknowledgments
+
+**Badge Program Strategy:**
+
+Make compliance visible and viral:
+
+- dbt project passes SOX checks → Badge service signs JWT
+- README displays: "Clyra Certified - SOX Compliant"
+- GitHub renders badge → Social proof → Viral adoption
+- Badge endpoint: clyra.io/badge/sox/{project-id}
+
+**Audit Partner Network:**
+
+- 2-3 Big 4 firms acknowledge DEF format
+- QSAs can verify bundles independently
+- Audit guidance materials (how to validate evidence)
+- "Clyra-ready" becomes audit requirement in RFPs
+
+**Success Metrics:**
+
+- 100+ badges issued
+- 2 Big 4 firms acknowledge format
+- 5 QSA endorsements
+- Published audit guidance
+
+### Phase 3: The Platform Play (Days 181-365)
+
+**Objective:** $300-600K ARR, 30% Review→Gate conversion, Series A ready
+
+**Commercial Success Metrics:**
+
+- ≥10 customers on Review SKU (listen-only start)
+- ≥30% upsell to Gate SKU within 90 days
+- 70% Review / 30% Gate revenue mix initially
+- Average contract: Review $35K, Gate $100K
+
+**Platform Network Effects:**
+
+- Every dbt project using hooks → potential customer
+- Every ServiceNow ticket → social proof
+- Every badge → marketing asset
+- Integration partners (dbt Labs, Snowflake, Databricks)
+
+---
+
+## 7. Channel Strategy: Problem Distribution
+
+### Tier 1: Data Platform Channels (70% effort)
+
+**dbt Community (Slack + Discourse)**
+
+- Problem-first contributions (not promotional)
+- Help with governance/compliance questions
+- Share OSS tools when relevant
+- Build reputation: "The SOX compliance expert"
+
+**r/dataengineering + r/dbt**
+
+- Technical tutorials (warehouse anchoring, evidence formats)
+- Real audit war stories (6-week evidence hunts)
+- OSS tool releases (ServiceNow bridge, dbt hooks)
+- 10:1 help-to-promote ratio
+
+**Data Engineering Podcasts/Newsletters**
+
+- The Data Engineering Podcast
+- Data Engineering Weekly
+- Locally Optimistic
+- Topic: "Why data teams fail SOX audits"
+
+### Tier 2: Compliance/Audit Channels (20% effort)
+
+**SOX Compliance Communities**
+
+- IT Compliance Institute
+- SOX forums (Controller/Finance perspective)
+- Share audit time reduction case studies
+- Position as "data governance bridge"
+
+**QSA/Audit Firm Outreach**
+
+- Big 4 SI partnerships (2-3 firms)
+- Evidence format validation workshops
+- Auditor guidance materials
+- "Clyra-ready" audit procedures
+
+### Tier 3: Technical Amplification (10% effort)
+
+**Conference Speaking**
+
+- dbt Coalesce: "SOX Change Control for Analytics Engineers"
+- Snowflake Summit: "Warehouse-Native Data Governance"
+- Data Council: "Why Data Teams Will Own AI Agent Governance"
+
+**Technical Blog Series**
+
+- Personal blog → HackerNews submission (best 2 pieces)
+- Focus: Concrete problems, real solutions
+- No philosophical concepts, just buyer pain
+
+---
+
+## 8. Problem-First Content Strategy
+
+### The 8-Week Pre-Launch Campaign
+
+**Theme:** Build credibility + urgency (NO Clyra mentions until Week 9)
+
+**Week 1: The SOX Audit Evidence Scramble**
+
+- Blog: "The Revenue Model Change That Failed SOX Audit"
+- Twitter: Quarter-end reality (6 weeks creating spreadsheet)
+- Reddit: "How do you handle data change control?"
+
+**Week 2: The ServiceNow/Jira Bridge (OSS Release #1)**
+
+- Blog: "How to Tie QUERY_HISTORY to a ServiceNow Change Ticket"
+- GitHub: ServiceNow/Jira bridge scripts (bash, no dependencies)
+- Focus: Solve immediate pain (evidence attachment)
+
+**Week 3: The Evidence Bundle Format (OSS Release #2)**
+
+- Blog: "Quarter-End Without Screenshots: A Practical Evidence Bundle Format"
+- GitHub: Vendor-neutral spec + verifier stub + auditor guide
+- HackerNews: "Show HN: Evidence Bundle Format for Data Compliance"
+
+**Week 5: The dbt SOX Hooks (OSS Release #3)**
+
+- Blog: "Why dbt Tests Aren't SOX Change Control (And What To Do Instead)"
+- GitHub: on_run_end macros + ServiceNow integration
+- dbt Community: "Released: dbt hooks for SOX compliance"
+
+**Week 6: The ServiceNow/Jira Guide (THE WEDGE)**
+
+- Blog: "Jira vs ServiceNow for Data Change Control: A Practical Guide"
+- Detailed setup guides for both platforms
+- Field configuration, automation examples
+- Community asks: "Is there a tool that does all this?" (setup for Week 9)
+
+**Week 7: The AI Agent Bridge**
+
+- Blog: "Why Data Teams Will Own AI Agent Governance (And How to Prepare)"
+- Position: Same patterns (dbt today, agents tomorrow)
+- Architecture: Data-led, agent-ready (not creating new category)
+
+**Week 8: The SOX Checklist (OSS Release #4)**
+
+- Blog: "The SOX Data Change Control Checklist (Steal This)"
+- GitHub: Complete implementation roadmap (4-week timeline)
+- Launch Tease: "I've been working on something..." (Monday reveal)
+
+**Week 9: The Clyra Launch**
+
+- "The tool that automates this entire workflow"
+- OSS foundation + commercial platform
+- dbt + Snowflake/Databricks native
+- From hook → attested ticket in one system
+
+### Content Performance Targets
+
+- **Blog posts:** 8 major pieces, 10,000+ total reads
+- **GitHub stars:** 1,000+ (across OSS repos)
+- **Community engagement:** 50+ high-value contributions
+- **Email list:** 500+ subscribers (launch day amplification)
+- **Badge adoption:** 100+ "Clyra Certified" badges live
+
+---
+
+## 9. Competitive Positioning (Problem-Led)
+
+### vs. Data Observability (Monte Carlo, Metaplane)
+
+**Their Story:** "Detect data quality issues with monitoring"
+**Our Story:** "Prove data changes follow SOX change control"
+**The Difference:** "Detection ≠ Attestation. Alerts ≠ Audit evidence."
+
+### vs. Data Catalogs (Alation, Atlan)
+
+**Their Story:** "Understand your data with cataloging"
+**Our Story:** "Prove your data changes with evidence"
+**The Difference:** "Documentation ≠ Change control. Discovery ≠ Compliance."
+
+### vs. Compliance Platforms (Vanta, Drata)
+
+**Their Story:** "Automate compliance documentation"
+**Our Story:** "Automate compliance evidence from data operations"
+**The Difference:** "Generic compliance ≠ Data-specific controls. Checkboxes ≠ dbt governance."
+
+### vs. dbt Cloud Features
+
+**Their Story:** "We might build governance features eventually"
+**Our Story:** "We integrate with your dbt + Snowflake + ServiceNow stack today"
+**The Difference:** "Vendor lock-in vs. vendor-neutral. Wait vs. ship now."
+
+---
+
+## 10. Pricing: Progressive Adoption
+
+### Clyra Review ($20-50K/year)
+
+**What's Included:**
+
+- Listen-only webhook integration
+- Evidence bundle generation (DEF v0)
+- ServiceNow/Jira export (automated tickets)
+- Daily review automation
+- Badge program access
+- Community support
+
+**Hook:** "Start safe with listen-only mode—no enforcement risk"
+
+**Target:** Pilot/POC phase (30-60 days)
+
+### Clyra Gate ($75-150K/year)
+
+**What's Included:**
+
+- Everything in Review +
+- Full policy enforcement
+- SQL safety guards (mass operation blocks)
+- Kill-switch capabilities
+- BEC-grade approval certificates
+- Advanced compliance (PCI/HIPAA overlays)
+- Priority support
+
+**Hook:** "Graduate to full enforcement when ready"
+
+**Target:** Production deployment (30% conversion from Review)
+
+### Enterprise Plus (Custom)
+
+**What's Included:**
 
 - Everything in Gate +
 - Multi-framework compliance packs
-- Dedicated compliance success manager
-- Custom detector development
+- Dedicated success manager
+- Custom policy development
 - Multi-tenant deployment
-- Hook: "Enterprise-scale data governance"
+- SLA guarantees
 
-  Purple Cow Add-Ons
+**Hook:** "Enterprise-scale data governance"
 
-  Forensic Accelerator ($5,000)
+**Target:** 1,000+ employee organizations
 
-- PCI/HIPAA attestation setup
+### Add-On Services
+
+**Audit Accelerator ($5,000)**
+
+- SOX ITGC attestation setup
 - QSA briefing materials
-- 30 days of forensic consulting
-- Hook: "From pilot to attestation in 30 days"
+- 30 days compliance consulting
 
-  Auditor Confidence Pack ($7,500)
+**Badge Plus ($2,000/year)**
 
-- Independent verification training for your auditors
-- Custom evidence bundle templates
-- Direct QSA hotline
-- Hook: "Make your auditor love evidence bundles"
+- Premium badge (animated, verified)
+- Compliance dashboard widget
+- Public trust page
 
-  ---
+---
 
-  11. The Purple Cow Sales Playbook
+## 11. The Problem-First Sales Playbook
 
-  Discovery: The Evidence Gap Analysis
+### Discovery: The Evidence Gap Analysis
 
-  1. "Show me your last incident post-mortem."
-  2. "Could you replay that incident deterministically today?"
-  3. "What would your auditor say about your AI evidence?"
-  4. "How long does PCI evidence collection take?"
-  5. "Can you prove no duplicate charges occurred last month?"
+**Key Questions:**
 
-  Demo: The Forensic Challenge
+1. "Walk me through your last SOX audit prep. How long did it take?"
+2. "Where are your dbt approvals stored? How do you link them to runs?"
+3. "Show me a change ticket for a dbt model. What's missing?"
+4. "How do you prove schema changes were approved?"
+5. "What does your controller think of the current process?"
 
-  1. Corruption Injection: Live database corruption
-  2. Evidence Capture: WAL LSN-anchored snapshot
-  3. Deterministic Replay: Exact reproduction offline
-  4. Independent Verification: Go/TS verifiers run
-  5. Attestation Generation: Signed PCI document in 10 minutes
+**Pain Qualification:**
 
-  Objection Handling: Purple Cow Responses
+- Current audit prep time: 6-8 weeks = high pain
+- Evidence scattered across 4+ systems = high pain
+- Manual spreadsheet correlation = high pain
+- Controller/auditor frustration = economic urgency
 
-  "We already have observability"
-  → "Perfect. Now you can add evidence. Watch this replay—can your observability tools do this?"
+### Demo: The 10-Minute Workflow
 
-  "How is this different from database logs?"→ "Logs tell you what was requested. We prove what
-  actually changed, anchored to WAL LSN. Here's the difference." [Live demo]
+**Setup:** "I'm going to show you the complete workflow—dbt run to attested ServiceNow ticket."
 
-  "This seems like overkill"
-  → "Tell that to your auditor. Here's a signed bundle they can verify independently."
+**Step 1: dbt Integration (2 min)**
 
-  "What about performance impact?"
-  → "Gateway adds 15ms p95, Recorder 20ms p95. Here's our benchmark data. Incidents cost more than
-  milliseconds."
+```bash
+clyra dbt init demo-project
+# Shows hooks installation, macro setup
+```
 
-  ---
+**Step 2: Evidence Generation (3 min)**
 
-  12. Purple Cow Metrics & KPIs
+```bash
+dbt run  # Hooks emit evidence bundle
+clyra verify evidence.zip --explain
+# Shows: dbt run ID + QUERY_HISTORY + approval + schema diff
+```
 
-  Leading Indicators (Weekly)
+**Step 3: ServiceNow Integration (2 min)**
 
-- GitHub Stars: +75/week (forensic community building)
-- Evidence Bundles Verified: 100/week (actual usage proof)
-- Demo Completions: 40/week (pipeline velocity)
-- WAL LSN Snapshots Generated: 500/week (core value delivery)
+```bash
+# Evidence automatically attached to change ticket
+# Shows populated ticket with ALL required fields
+```
 
-  Forensic KPIs (Monthly)
+**Step 4: SOX Attestation (2 min)**
 
-- Replay Success Rate: >99% (determinism proof)
-- Attestation Generation Time: <10 minutes (speed promise)
-- Independent Verification Rate: >95% (trust validation)
-- Auditor Satisfaction Score: >9/10 (end user validation)
+```bash
+clyra attest evidence.zip --framework sox
+# Signed attestation ready for auditor
+```
 
-  Purple Cow Moments (Quarterly)
+**Step 5: Badge Issuance (1 min)**
 
-- "That's impossible" demos: 10 per quarter
-- Auditor endorsements: 2 per quarter
-- Compliance time reduction: >80% average
-- Incident replay accuracy: 100% deterministic
+```bash
+# "Clyra Certified - SOX Compliant" badge live
+# README displays social proof
+```
 
-  North Star: "Evidence Bundles Verified by Third Parties"
+**The Question:** "How long does this take you today?"
 
-- Month 3: 100 bundles independently verified
-- Month 6: 1,000 bundles independently verified
-- Month 12: 10,000 bundles independently verified
-- Year 2: Industry standard for AI forensics
+### Objection Handling: Problem-Focused
 
-  ---
+**"We already have dbt Cloud"**
+→ "Perfect. We integrate with dbt Cloud hooks. Let me show you the ServiceNow ticket this creates." [Demo]
 
-  13. The Purple Cow Launch Strategy
+**"We don't have SOX pressure yet"**
+→ "When does your IPO timeline start? This takes 3 hours to implement vs. 6 weeks to build internally." [ROI calc]
 
-  Pre-Launch: The Evidence Challenge (-30 Days)
+**"This seems specific to dbt"**
+→ "dbt is the wedge. Same architecture works for activation (Hightouch/Census) and AI agents. Data-led, agent-ready." [Roadmap]
 
-- Blog Series: "The Great Observability Lie" (4 parts)
-- Technical Preview: WAL LSN anchoring demo for Postgres community
-- Challenge Posted: "$1000 to anyone who can forge our evidence bundles"
-- Auditor Outreach: Private demos for 3 Big 4 partners
+**"What about cost?"**
+→ "Review is $35K/year. Your controller spends 6 weeks at $200/hour = $48K per quarter = $192K/year. This pays for itself in quarter one." [TCO]
 
-  Launch Week: "Show HN: Your AI Agents Can't Prove They Work"
+---
 
-- Monday: GitHub repo goes public with perfect README
-- Tuesday: Hacker News launch (founder online 12 hours)
-- Wednesday: PostgresWeekly technical deep-dive published
-- Thursday: First Forensic Friday livestream
-- Friday: Case study published: "The $50K Duplicate Refund That Replay Caught"
+## 12. Success Metrics & KPIs
 
-  Post-Launch: Evidence Everywhere (Days 8-30)
+### Leading Indicators (Weekly)
 
-- Week 2: Reddit technical tutorials (r/PostgreSQL, r/devops)
-- Week 3: First QSA endorsement published
-- Week 4: "100 Evidence Bundles Verified" milestone celebration
+- **OSS Adoption:** dbt hooks installed, ServiceNow bridge usage
+- **Evidence Bundles Generated:** Actual usage proof (not vanity)
+- **Badge Issuance:** "Clyra Certified" badges live in READMEs
+- **Community Engagement:** Help given, credibility built
 
-  ---
+### Commercial KPIs (Monthly)
 
-  14. Risk Mitigation: Purple Cow Protection
+- **Review Signups:** New customers starting listen-only
+- **Gate Conversions:** Review → Gate upsell (target 30%)
+- **Time to Value:** Days from signup to first attested ticket
+- **Audit Time Reduction:** 6-8 weeks → 3-5 days (realized)
 
-  Technical Risks
+### Strategic Milestones (Quarterly)
 
-  Risk: WAL LSN approach questioned by Postgres experts
-  Mitigation: Core Postgres contributor on advisory board, public benchmarks
+**Q1 (Days 1-90):**
 
-  Risk: Deterministic replay fails on edge casesMitigation: Extensive test vectors, fuzz testing,
-  partial replay certificates
+- 1,000 GitHub stars across OSS repos
+- 100 dbt projects with hooks installed
+- 10 ServiceNow integrations live
+- 5 pilot customers (Review SKU)
 
-  Market Risks
+**Q2 (Days 91-180):**
 
-  Risk: "Too technical for executives"
-  Mitigation: Always lead with business outcome (compliance time, incident cost)
+- 100 "Clyra Certified" badges live
+- 2 Big 4 audit firm acknowledgments
+- 10 paying customers (8 Review, 2 Gate)
+- $150K ARR
 
-  Risk: "Postgres-only limits market"Mitigation: Own Postgres forensics completely, expand from
-  position of strength
+**Q3 (Days 181-270):**
 
-  Competitive Risks
+- 30 paying customers (20 Review, 10 Gate)
+- $400K ARR
+- 30% Review→Gate conversion proven
+- Series A positioning
 
-  Risk: Observability vendors add "replay" features
-  Mitigation: WAL LSN anchoring is our moat, independent verifiers ensure trust
+**Q4 (Days 271-365):**
 
-  ---
+- 50 paying customers
+- $600K ARR (runway + Series A ready)
+- Integration partnerships (dbt Labs, Snowflake)
+- "Industry standard" positioning achieved
 
-  15. The Purple Cow Future Vision
+### North Star Metric
 
-  18-Month Outcome: Industry Standard
+**"Attested Change Tickets Created"**
 
-- "PEF-Verified" becomes the GitHub badge for automation
-- QSAs require evidence bundles for AI compliance
-- SIs include Clyra in every automation RFP
-- Platform teams won't ship automation without forensic evidence
+- Month 3: 1,000 tickets (usage proof)
+- Month 6: 10,000 tickets (network effect)
+- Month 12: 100,000 tickets (industry standard)
 
-  The Purple Cow Flywheel
+---
 
-  Evidence Bundles Generated → Independent Verification →
-  Auditor Trust → Compliance Success → Industry Adoption →
-  More Evidence Bundles Generated
+## 13. The Launch Strategy
 
-  Exit Story: "The Company That Made AI Trustworthy"
+### Pre-Launch: 8-Week OSS Campaign (-60 to -1 Days)
 
-  When Clyra exits, the narrative is: "They solved the evidence problem that was holding back AI
-  adoption. Every automated system now has a flight recorder. Trust became scalable."
+**Goals:**
 
-  ---
-  Appendix A: The Purple Cow Demo Script
+- Build credibility (no Clyra promotion)
+- Create urgency (concrete pain focus)
+- Establish patterns (evidence bundle format)
+- Generate demand ("Is there a tool that does all this?")
 
-  The 5-Minute Forensic Challenge
+**Tactics:**
 
-  Setup: "I'm going to corrupt your database and challenge you to prove what happened."
+- 4 OSS releases (ServiceNow bridge, evidence spec, dbt hooks, SOX checklist)
+- 8 problem-first blog posts
+- 50+ community contributions
+- 500+ email subscribers
 
-  Step 1: The Attack (30 seconds)
+### Launch Week: "The Automation Layer" (Days 1-7)
 
-# Inject malformed JSON that bypasses normal validation
+**Monday: GitHub + Show HN**
 
-  curl -X POST /api/refunds -d '{"amount": "fifty dollars"}'
+- "Show HN: Clyra - Data Change Control for dbt + Snowflake"
+- Built from 8 weeks of community feedback
+- OSS tools → now integrated platform
+- Founder online 12 hours
 
-  Step 2: The Evidence (60 seconds)
+**Tuesday: dbt Community Launch**
 
-# Show the OWASP-tagged receipt with threat classification
+- dbt Slack: "The tool that automates the SOX workflow"
+- r/dbt: "Released: Complete dbt governance platform"
+- Focus: ServiceNow integration (the wedge)
 
-  clyra verify evidence.zip --explain
+**Wednesday: Warehouse Community**
 
-# Receipt shows: owasp_code: "LLM-02", threat_class: "malformed_input"
+- Snowflake community: "QUERY_HISTORY-native governance"
+- Databricks community: "Delta commit anchoring"
+- Technical credibility focus
 
-  Step 3: The Snapshot (60 seconds)
+**Thursday: Compliance Community**
 
-# WAL LSN-anchored snapshot captured exact database state
+- SOX forums: "6-8 weeks → 3-5 days audit prep"
+- Controller networks: "Automated evidence collection"
+- Business value focus
 
-  cat evidence.zip/snapshots/pre_snapshot.json
+**Friday: Case Study Publication**
 
-# Shows: wal_lsn: "0/1234ABCD", table_checksums: {...}
+- "How [Company] Achieved SOX Compliance in 3 Hours"
+- Real numbers: audit time, cost savings
+- Badge displayed in their README
 
-  Step 4: The Replay (120 seconds)
+### Post-Launch: Evidence Network (Days 8-30)
 
-# Deterministic offline reproduction in scratch schema
+**Week 2: Badge Amplification**
 
-  clyra replay evidence.zip
+- First 20 badges issued
+- Social proof in READMEs
+- Community shares screenshots
+- Viral growth begins
 
-# Creates: clyra_replay_20250922_143022, reproduces exact failure
+**Week 3: Audit Partner Validation**
 
-  Step 5: The Attestation (60 seconds)
+- First Big 4 acknowledgment
+- QSA guidance published
+- "Clyra-ready" audit procedures
+- Professional services opportunity
 
-# Generate signed PCI DSS attestation
+**Week 4: Platform Expansion**
 
-  clyra attest evidence.zip --framework pci
+- First Review→Gate conversion
+- Case study: "Why [Company] Upgraded to Full Enforcement"
+- Commercial validation
 
-# Output: Signed JSON + PDF ready for auditor review
+---
 
-  The Challenge: "Can your observability tools do this?"
+## 14. Risk Mitigation
 
-  ---
-  Appendix B: Purple Cow Messaging Templates
+### Market Risks
 
-  Email Templates
+**Risk:** "Data governance market is crowded"
+**Mitigation:** We're not competing with observability/catalogs. We solve SOX change control (underserved pain). Different buyer, different budget.
 
-  Subject: "Your last incident—could you replay it?"
+**Risk:** "dbt/Snowflake build competing features"
+**Mitigation:** Partner positioning ("we integrate with your stack"). Independent verifier moat (trust without vendor lock-in). Move fast with OSS adoption.
 
-  Hi [Name],
+**Risk:** "Audit firms don't adopt"**
+**Mitigation:** Evidence format is vendor-neutral. QSAs can verify independently. Start with 2-3 Big 4 champions. Make them the heroes.
 
-  Quick question: When your automation broke last time, could you:
+### Technical Risks
 
-  1. Replay it exactly offline?
-  2. Prove what data changed?
-  3. Generate a signed attestation for auditors?
+**Risk:** "Warehouse integration complexity"
+**Mitigation:** Start with Snowflake/Databricks (80% of market). Postgres for dev/pilot. Phased rollout strategy.
 
-  If not, you had observability, not evidence.
+**Risk:** "dbt hook performance impact"
+**Mitigation:** <2s overhead per run (benchmarked). Metadata-only capture. Async evidence generation. Performance SLAs documented.
 
-  Clyra anchors proof to Postgres WAL LSN and enables deterministic replay.
-  10-minute demo: [calendar link]
+### Commercial Risks
 
-  Watch this replay: [demo video]
+**Risk:** "Customers don't convert Review→Gate"
+**Mitigation:** 30% target is conservative. Value is proven in listen-only. Enforcement is natural progression. Usage-based pricing considered.
 
-  Best,
-  [Signature]
+**Risk:** "Badge program doesn't drive adoption"
+**Mitigation:** Multiple entry points (OSS tools, badge, ServiceNow integration). Badge is one vector, not the only vector.
 
-  Subject: "Your auditor asked for AI evidence. Now what?"
+---
 
-  Hi [Name],
+## 15. The 18-Month Vision
 
-  "How do you prove your AI agents are compliant?"
+### Industry Standard Outcome
 
-  If you answered with logs and dashboards, you have a problem.
+**When data teams ask:** "How do we prove our dbt changes are SOX compliant?"
+**The answer is:** "Clyra"
 
-  Auditors need forensic evidence:
-  ✓ Tamper-evident records
-  ✓ Deterministic replay capability
-  ✓ Independent verification
-  ✓ Signed attestations
+**Indicators:**
 
-  Clyra creates all four in 10 minutes.
+- "Clyra Certified" badges in 1,000+ READMEs
+- Big 4 audit firms require DEF format in RFPs
+- dbt Labs partnership/integration
+- Snowflake/Databricks marketplace listings
+- "Data change control" = Clyra (category ownership)
 
-  See the evidence: [demo link]
-  Schedule forensic demo: [calendar]
+### The Platform Flywheel
 
-  Best,
-  [Signature]
+```
+dbt Hooks Installed → Evidence Bundles Generated →
+ServiceNow Tickets Created → Auditors See Proof →
+Controllers Demand It → More dbt Projects Adopt →
+Badges Displayed → Social Proof → Viral Growth →
+dbt Hooks Installed
+```
 
-  Social Media Templates
+### Strategic Options (18-24 Months)
 
-  LinkedIn Post: The Evidence Gap
+**Option 1: Independent Platform ($10M+ ARR path)**
 
-  Your AI agent just processed 10,000 refunds.
+- Expand to full data governance platform
+- Add content governance (email/CMS)
+- Build UI/dashboard for non-technical stakeholders
+- Series B fundraise
 
-  Your observability dashboard shows:
-  → "Success rate: 99.2%"
-  → "Average response time: 45ms"
-  → "Error spike at 2:47 PM"
+**Option 2: Strategic Acquisition (dbt Labs, Snowflake, Databricks)**
 
-  Your auditor asks:
-  → "Which 80 refunds failed and why?"
-  → "Can you replay the failure deterministically?"
-  → "Where's your signed attestation?"
+- "Native governance layer" positioning
+- Integration depth + adoption rate = acquisition premium
+- Exit multiple: 15-20× ARR ($600K → $9-12M acquisition)
 
-  Observability shows symptoms.
-  Evidence proves truth.
+**Option 3: AI Governance Pivot (Agent-Ready)**
 
-  #AICompliance #Postgres #Forensics
+- Expand from data platform to AI agents
+- Same architecture, broader scope
+- "Data-led governance for AI" positioning
+- Larger market, higher valuations
 
-  Twitter/X: The Replay Challenge
+---
 
-  Challenge: Show me deterministic replay of your last automation incident.
+## Appendix A: The Problem-First Demo Script
 
-  Requirements:
+### The 5-Minute Evidence Workflow
 
-- Exact reproduction offline
-- WAL LSN-anchored snapshots
-- Independent verification
-- <10 minute setup
+**Setup:** "Let me show you how this works—dbt run to attested ServiceNow ticket."
 
-  If you can't, you have logs, not evidence.
+**Minute 1: The Problem**
 
-  Demo: [link]
-  #BuildInPublic #PostgreSQL
+```
+"Show me your last SOX audit prep. How did you link Jira tickets to dbt runs?"
+[Customer explains manual process, 6-8 weeks]
+```
+
+**Minute 2: The dbt Integration**
+
+```bash
+clyra dbt init demo-project
+# Shows: hooks install, macros configured, 2 minutes
+```
+
+**Minute 3: The Evidence Generation**
+
+```bash
+dbt run  # Normal dbt run with hooks
+clyra verify evidence.zip --explain
+# Shows: dbt run ID, QUERY_HISTORY ref, approval, schema diff—all in one bundle
+```
+
+**Minute 4: The ServiceNow Ticket**
+
+```
+# Evidence automatically attached to change ticket
+# Fields populated: change_id, dbt_run_id, query_history_ref, approver, schema_diff
+# One ticket, all proof, ready for auditor
+```
+
+**Minute 5: The Attestation**
+
+```bash
+clyra attest evidence.zip --framework sox
+# Signed SOX ITGC attestation generated
+# PDF + JSON ready for audit review
+```
+
+**The Question:** "How long does your current process take?" [6-8 weeks → 3-5 days]
+
+---
+
+## Appendix B: Problem-First Messaging Templates
+
+### Email Templates
+
+**Subject:** "How do you link Jira tickets to dbt runs?"
+
+Hi [Name],
+
+Quick question: When auditors ask "Show me the change ticket for this dbt model change," what do you show them?
+
+If you're like most data teams:
+
+- Jira ticket exists (but doesn't reference dbt run ID)
+- dbt Cloud shows the run (but no approval record)
+- Snowflake has QUERY_HISTORY (but no link to ticket)
+- Manual spreadsheet ties it together (6 weeks of work)
+
+We built Clyra to automate this. dbt run → attested ServiceNow ticket automatically.
+
+10-minute demo: [calendar link]
+See the workflow: [demo video]
+
+Best,
+[Signature]
+
+---
+
+**Subject:** "6-8 weeks → 3-5 days (SOX audit prep)"
+
+Hi [Name],
+
+Your controller just asked: "How long will SOX audit prep take this quarter?"
+
+If you answered "6-8 weeks of evidence collection," you have a problem.
+
+What if it was 3-5 days instead?
+
+Clyra automates evidence collection from dbt runs:
+✓ dbt run ID + QUERY_HISTORY → linked automatically
+✓ Approval records → attached to change tickets
+✓ Schema diffs → captured and verified
+✓ SOX attestations → generated on demand
+
+See the workflow: [demo link]
+Schedule walkthrough: [calendar]
+
+Best,
+[Signature]
+
+---
+
+### Social Media Templates
+
+**LinkedIn: The Audit Prep Reality**
+
+Quarter-end audit prep for data platform:
+
+Week 1-2: Identify all dbt model changes
+Week 3-4: Find Slack approvals for each
+Week 5: Match Jira tickets to dbt runs manually
+Week 6-8: Create evidence spreadsheet
+
+Controller's reaction: "This can't be our process."
+
+There's a better way. Automate evidence from dbt hooks.
+
+6-8 weeks → 3-5 days.
+
+# DataEngineering #SOXCompliance #dbt
+
+---
+
+**Twitter/X: The ServiceNow Integration**
+
+Your dbt model just changed the revenue calculation.
+
+Auditor asks: "Show me the change ticket."
+
+What ticket? Approval was in Slack, run was in dbt Cloud, queries are in QUERY_HISTORY.
+
+Nothing connects them.
+
+Until now: [demo link]
+
+# dbt #Snowflake #DataGovernance
+
+---
+
+## Appendix C: The OSS Wedge Artifacts
+
+### Release Schedule (Pre-Launch)
+
+**Week 2: ServiceNow/Jira Bridge**
+
+- Repo: `data-change-control/servicenow-jira-bridge`
+- Files: Bash scripts, payload examples, setup guide
+- Value: Immediate—attach dbt evidence to tickets today
+
+**Week 3: Evidence Bundle Spec**
+
+- Repo: `data-change-control/evidence-bundle-spec`
+- Files: JSON schemas, verifier stub (Go), auditor guide
+- Value: Format standardization—vendor-neutral
+
+**Week 5: dbt SOX Hooks**
+
+- Repo: `data-change-control/dbt-sox-hooks`
+- Files: on_run_end macros, ServiceNow integration, examples
+- Value: Complete workflow—hooks + bridge + evidence
+
+**Week 8: SOX Data Checklist**
+
+- Repo: `data-change-control/sox-data-checklist`
+- Files: Implementation checklist, timeline, templates
+- Value: Roadmap—how to do this yourself
+
+### Week 9: The Clyra Reveal
+
+"These 4 OSS tools got 200+ teams started. But you asked: 'Is there one platform that does all this?'
+
+Today we're launching Clyra—the automation layer that ties it together.
+
+OSS foundation + commercial platform.
+dbt + Snowflake/Databricks native.
+From hook → attested ServiceNow ticket in one system.
+
+Built from 8 weeks of your feedback."
+
+---
+
+**End of GTM Strategy v4.0**
